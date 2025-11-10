@@ -22,7 +22,7 @@ paths:
       summary: Get all products list
       description: Retrieve a list of all available products.
       responses:
-        '200':
+        "200":
           description: Successful response with product list
           content:
             application/json:
@@ -35,25 +35,25 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Product'
-        '400':
+                      $ref: "#/components/schemas/Product"
+        "400":
           description: Bad request — invalid parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: Not found — resource unavailable
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /relatedProducts:
     get:
@@ -62,7 +62,7 @@ paths:
       summary: Related Products for Main page
       description: Retrieve related products displayed on the main page.
       responses:
-        '200':
+        "200":
           description: Successful response with related product list
           content:
             application/json:
@@ -75,25 +75,25 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Product'
-        '400':
+                      $ref: "#/components/schemas/Product"
+        "400":
           description: Bad request — invalid parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: Not found — resource unavailable
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
 components:
   schemas:

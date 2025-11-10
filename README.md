@@ -7,12 +7,12 @@ Built with **React**, **Redux Toolkit**, and **Vite**, it provides a fast and sc
 
 ## 🚀 Tech Stack
 
-- ⚛️ **React 18** — UI library  
-- 🧭 **React Router v6** — client-side routing  
-- 🧩 **Redux Toolkit** — state management  
-- ⚡ **Vite** — modern build tool  
-- 🧪 **Jest + React Testing Library** — unit and integration tests  
-- 🎨 **CSS Modules / Styled Components** (choose your approach)  
+- ⚛️ **React 18** — UI library
+- 🧭 **React Router v6** — client-side routing
+- 🧩 **Redux Toolkit** — state management
+- ⚡ **Vite** — modern build tool
+- 🧪 **Jest + React Testing Library** — unit and integration tests
+- 🎨 **CSS Modules / Styled Components** (choose your approach)
 - 📄 **OpenAPI (YAML)** — API documentation
 
 ---
@@ -33,7 +33,7 @@ src/
 
 ## 🎨 Design
 
-👉 [Figma / Design link goes here](https://www.figma.com/design/h94EgrKvApTfFxclNPJjqw/eCommerce-Website-%7C-Web-Page-Design-%7C-UI-KIT-%7C-Interior-Landing-Page--Community---Copy-?node-id=0-1&p=f&t=zOHXyHw7zIu662HK-0)  
+👉 [Figma / Design link goes here](https://www.figma.com/design/h94EgrKvApTfFxclNPJjqw/eCommerce-Website-%7C-Web-Page-Design-%7C-UI-KIT-%7C-Interior-Landing-Page--Community---Copy-?node-id=0-1&p=f&t=zOHXyHw7zIu662HK-0)
 
 ---
 
@@ -62,19 +62,20 @@ App will start at:
 
 API documentation is described in [`openapi.yaml`](./openapi.yaml).  
 Example endpoints:
-- `GET /products` — returns full product list  
-- `GET /relatedProducts` — returns related products for the main page  
+
+- `GET /products` — returns full product list
+- `GET /relatedProducts` — returns related products for the main page
 
 ---
 
 ## 🧰 Available Scripts
 
-| Command | Description |
-|----------|-------------|
-| `npm run dev` | Run development server |
-| `npm run build` | Create production build |
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Run development server   |
+| `npm run build`   | Create production build  |
 | `npm run preview` | Preview production build |
-| `npm run test` | Run unit tests |
+| `npm run test`    | Run unit tests           |
 
 ---
 
@@ -84,10 +85,11 @@ Routing is handled via **React Router v6**.
 All routes are defined in `/src/app/router.tsx` (or `/routes/` folder).
 
 Example:
+
 ```tsx
 <Routes>
-  <Route path="/" element={<HomePage />} />
-  <Route path="/product/:id" element={<ProductPage />} />
+	<Route path="/" element={<HomePage />} />
+	<Route path="/product/:id" element={<ProductPage />} />
 </Routes>
 ```
 
@@ -95,13 +97,13 @@ Example:
 
 ## 📋 TODO
 
-- [ ] Add responsive layout  
-- [ ] Integrate real API endpoints  
-- [ ] Connect global error handling  
-- [ ] Add filters and sorting for product list  
-- [ ] Implement product detail page  
-- [ ] Write unit tests for Redux slices  
-- [ ] Configure CI/CD pipeline  
+- [ ] Add responsive layout
+- [ ] Integrate real API endpoints
+- [ ] Connect global error handling
+- [ ] Add filters and sorting for product list
+- [ ] Implement product detail page
+- [ ] Write unit tests for Redux slices
+- [ ] Configure CI/CD pipeline
 - [ ] Add i18n (optional)
 
 ---
