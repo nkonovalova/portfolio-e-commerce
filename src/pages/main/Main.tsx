@@ -1,7 +1,7 @@
-import Layout from "../../shared/ui/layout/Layout.tsx";
+import PageLayout from "../pageLayout/PageLayout.tsx";
 
 function Main() {
-	return <Layout>Main page</Layout>;
+	return <PageLayout>Main page</PageLayout>;
 }
 
 export default Main;

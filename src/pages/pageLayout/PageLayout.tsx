@@ -1,26 +1,24 @@
-import styles from "./Layout.module.scss";
+import styles from "./PageLayout.module.scss";
 import type React from "react";
-import clsx from "clsx";
+import Header from "./header/Header.tsx";
 
-type LayoutPropsT = {
+type PageLayoutPropsT = {
 	children: React.ReactNode;
 };
 
-function Layout({ children }: LayoutPropsT) {
+function PageLayout({ children }: PageLayoutPropsT) {
 	return (
 		<div className={styles.wrapper}>
-			<header className={styles.header}>Menu</header>
-
+			<header className={styles.header}>
+				<Header />
+			</header>
 			<main className={styles.main}>
-				<section className={clsx(styles.information, styles.top)}>
-					Top information block
-				</section>
+				<section className={styles.information}>Top information block</section>
 				<section className={styles.content}>{children}</section>
-				<section className={clsx(styles.information, styles.bottom)}>
+				<section className={styles.information}>
 					Bottom information block
 				</section>
 			</main>
-
 			<footer className={styles.footer}>Footer</footer>
 			<div className={styles.cart}>hidden shopping cart</div>
 			<div className={styles.errors}>hidden system errors</div>
@@ -28,4 +26,4 @@ function Layout({ children }: LayoutPropsT) {
 	);
 }
 
-export default Layout;
+export default PageLayout;

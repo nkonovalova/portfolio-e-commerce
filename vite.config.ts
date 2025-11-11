@@ -11,6 +11,12 @@ export default defineConfig({
 		open: true,
 	},
 
+	css: {
+		modules: {
+			localsConvention: "camelCaseOnly",
+		},
+	},
+
 	test: {
 		root: import.meta.dirname,
 		name: packageJson.name,

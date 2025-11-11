@@ -1,4 +1,4 @@
-@use "../variables.module.scss" as vars;
+@use "../../shared/ui/variables.module.scss" as vars;
 
 .wrapper {
   display: grid;
@@ -16,8 +16,7 @@
 }
 
 .header {
-  background: aqua;
-  grid-area: header;
+
 }
 
 .main {
@@ -26,15 +25,14 @@
 
 .footer {
   grid-area: footer;
-  border-top: 1px solid vars.$color-border
-}
-
-.information {
-  background: green;
+  border-top: 1px solid vars.$color-border;
+  padding-left: vars.$gap-mobile;
+  padding-right: vars.$gap-mobile;
 }
 
 .content {
-
+  padding-left: vars.$gap-mobile;
+  padding-right: vars.$gap-mobile;
 }
 
 .cart {
