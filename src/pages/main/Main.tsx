@@ -1,7 +1,7 @@
 import PageLayout from "../pageLayout/PageLayout.tsx";
 
 function Main() {
-	return <PageLayout>Main page</PageLayout>;
+	return <PageLayout>Content!</PageLayout>;
 }
 
 export default Main;
