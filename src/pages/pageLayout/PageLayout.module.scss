@@ -16,7 +16,13 @@
 }
 
 .header {
+  display: grid;
+  place-items: center;
+  background: vars.$color-bg-white;
 
+  @media screen and (min-width: vars.$breakpoint-desktop){
+    border-bottom: 1px solid vars.$color-border;
+  }
 }
 
 .main {

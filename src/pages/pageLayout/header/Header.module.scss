@@ -2,11 +2,21 @@
 
 .header {
   width: 100%;
+  max-width: vars.$max-content-width ;
   height: 100%;
   display: flex;
   position: relative;
   justify-content: space-between;
   z-index: 2;
+
+  @media screen and (min-width: vars.$breakpoint-desktop){
+    background: vars.$color-bg-white;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+  }
 }
 
 .logo-block {
@@ -19,6 +29,14 @@
   box-sizing: border-box;
   background: vars.$color-bg-white;
   box-shadow: 1px 1px 1px vars.$color-border;
+
+  @media screen and (min-width: vars.$breakpoint-desktop){
+    width: auto;
+    box-shadow: none;
+    background: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .nav {
@@ -34,6 +52,21 @@
 
   &.hidden {
     transform: translateY(-150%);
+  }
+
+  @media screen and (min-width: vars.$breakpoint-desktop){
+    position: relative;
+    transform: none;
+    z-index: initial;
+    box-shadow: none;
+    width: auto;
+    top: initial;
+    right: initial;
+    flex-grow: 1;
+
+    &.hidden {
+      transform: none;
+    }
   }
 
 }
@@ -75,5 +108,9 @@
   background: none;
   border: none;
   cursor: pointer;
+
+  @media screen and (min-width: vars.$breakpoint-desktop){
+    display: none;
+  }
 }
 

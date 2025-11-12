@@ -7,7 +7,7 @@ import Menu from "../../../widgets/menu/Menu.tsx";
 import { useEffect, useRef, useState } from "react";
 
 function Header() {
-	const [isMenuShow, setIsMenuShow] = useState(true);
+	const [isMenuShow, setIsMenuShow] = useState(false);
 	const headerRef = useRef<HTMLDivElement>(null);
 
 	const toggleMenu = () => {

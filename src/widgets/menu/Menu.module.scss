@@ -22,11 +22,20 @@
 .menu {
   display: grid;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 2rem 1rem 2rem;
   box-sizing: border-box;
   grid-template-areas:
     "personal"
     "sections";
+
+  @media screen and (min-width: vars.$breakpoint-desktop) {
+    width: auto;
+    grid-template-areas: "sections personal";
+    grid-template-columns: 70% 20%;
+    column-gap: 10%;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .personalList {
@@ -37,6 +46,12 @@
 
 .sectionList {
   grid-area: sections;
+
+  @media screen and (min-width: vars.$breakpoint-desktop) {
+    display: flex;
+    justify-content: center;
+    column-gap: 3rem;
+  }
 }
 .section-item{
   list-style: none;
