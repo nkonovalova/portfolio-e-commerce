@@ -3,13 +3,15 @@ $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
 $breakpoint-large-desktop: 1600px;
 
-$max-content-width: 1230px;
+$max-content-width: 1260px;
 
 $gap-mobile: 2rem;
-$gap-tablet: 2rem;
+$gap-tablet: 1rem;
+$gap-desktop: 1rem;
 
 $vertical-gap-mobile: 1rem;
 
 $color-border: rgba(0, 0, 0, 0.17);
 $color-text-main: #000;
+$color-text-secondary: #9F9F9F;
 $color-bg-white: #fff;

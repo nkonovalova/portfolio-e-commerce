@@ -1,6 +1,7 @@
 import styles from "./PageLayout.module.scss";
 import type React from "react";
 import Header from "./header/Header.tsx";
+import Footer from "./footer/Footer.tsx";
 
 type PageLayoutPropsT = {
 	children: React.ReactNode;
@@ -19,7 +20,9 @@ function PageLayout({ children }: PageLayoutPropsT) {
 					Bottom information block
 				</section>
 			</main>
-			<footer className={styles.footer}>Footer</footer>
+			<footer className={styles.footer}>
+				<Footer />
+			</footer>
 			<div className={styles.cart}>hidden shopping cart</div>
 			<div className={styles.errors}>hidden system errors</div>
 		</div>

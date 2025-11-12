@@ -32,8 +32,8 @@
 .footer {
   grid-area: footer;
   border-top: 1px solid vars.$color-border;
-  padding-left: vars.$gap-mobile;
-  padding-right: vars.$gap-mobile;
+  display: grid;
+  place-items: center;
 }
 
 .content {

@@ -13,8 +13,8 @@
     background: vars.$color-bg-white;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: vars.$gap-desktop;
+    padding-right: vars.$gap-desktop;
     box-sizing: border-box;
   }
 }
@@ -76,10 +76,10 @@
   display: flex;
   height: 100%;
   width: 20px;
+  align-items: center;
 
   @media screen and (min-width: vars.$breakpoint-tablet) {
     width: auto;
-    align-items: center;
   }
 }
 
