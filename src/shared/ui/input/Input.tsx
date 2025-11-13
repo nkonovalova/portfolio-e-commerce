@@ -1,4 +1,3 @@
-// src/shared/ui/input/Input.tsx
 import type { ChangeEvent } from "react";
 import React, { useId, type ComponentProps, type Ref } from "react";
 import styles from "./Input.module.scss";
@@ -6,10 +5,10 @@ import clsx from "clsx";
 import useDebounce from "../../hooks/useDebounce";
 
 type InputProps = {
-	label: string;
+	label?: string;
 	error?: string;
 	className?: string;
-	ref?: Ref<HTMLInputElement>; // React 19: ref is just another prop
+	ref?: Ref<HTMLInputElement>;
 	debounceDelay?: number;
 	onChange?: (value: string) => void;
 } & Omit<ComponentProps<"input">, "ref" | "onChange">;
@@ -18,7 +17,7 @@ function Input({
 	label,
 	error,
 	className,
-	ref, // Destructure ref like any other prop
+	ref,
 	onChange = () => null,
 	debounceDelay = 500,
 	...props
