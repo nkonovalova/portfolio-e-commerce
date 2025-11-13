@@ -1,0 +1,49 @@
+@use "../variables.module" as vars;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid vars.$color-border;
+  border-radius: 8px;
+  background-color: vars.$color-bg-white;
+  color: vars.$color-text-primary;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+  &:hover:not(:disabled) {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(184, 142, 47, 0.4);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &.link {
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+  }
+
+  &.unfilled {
+    border-radius: 0;
+    border-color: vars.$color-golden;
+    color: vars.$color-golden;
+  }
+
+  &.filled {
+    background-color: vars.$color-golden;
+    color: vars.$color-bg-white;
+    border-radius: 0;
+  }
+}
