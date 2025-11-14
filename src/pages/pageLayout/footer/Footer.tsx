@@ -3,6 +3,7 @@ import commonStyles from "../../../shared/ui/common.module.scss";
 import styles from "./Footer.module.scss";
 import clsx from "clsx";
 import { NavLink } from "react-router";
+import { Newsletter } from "../../../widgets/newsletter/Newsletter.tsx";
 function Footer() {
 	return (
 		<div className={styles.footer}>
@@ -62,7 +63,9 @@ function Footer() {
 					<h3 className={clsx(styles.header, styles.contentHeader)}>
 						Newsletter
 					</h3>
-					<div className={styles.form}>input</div>
+					<div className={styles.form}>
+						<Newsletter />
+					</div>
 				</div>
 			</div>
 			<div className={clsx(styles.section, styles.bottomContent)}>
