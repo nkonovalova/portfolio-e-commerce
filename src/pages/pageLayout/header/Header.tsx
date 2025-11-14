@@ -46,13 +46,20 @@ function Header() {
 					</div>
 					<div className={styles.home}>Furniro</div>
 				</NavLink>
-				<button className={styles.menuButton} onClick={toggleMenu}>
+				<button
+					className={styles.menuButton}
+					onClick={toggleMenu}
+					aria-label="open menu"
+				>
 					<IconHamburger />
 				</button>
 			</div>
-			<div className={clsx(styles.nav, !isMenuShow && styles.hidden)}>
+			<nav
+				className={clsx(styles.nav, !isMenuShow && styles.hidden)}
+				role="navigation"
+			>
 				<Menu />
-			</div>
+			</nav>
 		</div>
 	);
 }

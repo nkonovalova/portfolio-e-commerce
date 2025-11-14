@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 function Menu() {
 	return (
-		<nav className={styles.menu}>
+		<div className={styles.menu}>
 			<ul className={clsx(styles.list, styles.sectionList)}>
 				<li className={styles.sectionItem}>
 					<NavLink to={"/"} className={commonStyles.link}>
@@ -50,7 +50,7 @@ function Menu() {
 					</NavLink>
 				</li>
 			</ul>
-		</nav>
+		</div>
 	);
 }
 
