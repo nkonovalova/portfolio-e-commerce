@@ -76,6 +76,7 @@ export function Newsletter() {
 		>
 			<div className={styles.inputGroup}>
 				<Input
+					data-testid="subscribe-email"
 					type="email"
 					placeholder="Enter your email address"
 					onChange={handleEmailChange}
@@ -89,6 +90,7 @@ export function Newsletter() {
 						type="submit"
 						disabled={isSubmitting || !email || !!emailError}
 						style={ButtonStyle.link}
+						name="subscribe"
 					>
 						{isSubmitting ? "Subscribing..." : "SUBSCRIBE"}
 					</Button>
