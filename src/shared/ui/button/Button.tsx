@@ -30,7 +30,6 @@ export function Button({
 	style = ButtonStyle.default,
 	...props
 }: ButtonPropsT) {
-	console.log(style);
 	return (
 		<button
 			type={type}

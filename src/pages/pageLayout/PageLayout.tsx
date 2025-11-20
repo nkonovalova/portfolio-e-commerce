@@ -4,17 +4,20 @@ import Header from "./header/Header.tsx";
 import Footer from "./footer/Footer.tsx";
 
 type PageLayoutPropsT = {
+	topInfoBlock?: React.ReactNode;
 	children: React.ReactNode;
 };
 
-function PageLayout({ children }: PageLayoutPropsT) {
+function PageLayout({ topInfoBlock, children }: PageLayoutPropsT) {
 	return (
 		<div className={styles.wrapper}>
 			<header className={styles.header}>
 				<Header />
 			</header>
 			<main className={styles.main}>
-				<section className={styles.information}>Top information block</section>
+				{topInfoBlock && (
+					<section className={styles.information}>{topInfoBlock}</section>
+				)}
 				<section className={styles.content}>{children}</section>
 				<section className={styles.information}>
 					Bottom information block
