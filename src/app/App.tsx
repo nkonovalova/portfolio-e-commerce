@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.module.scss";
+import "../shared/ui/common.module.scss";
 
 import Main from "../pages/main/Main.tsx";
 

@@ -27,6 +27,9 @@
 
 .main {
   grid-area: main;
+  display: grid;
+  place-items: center;
+  grid-row-gap: 3rem;
 }
 
 .footer {
@@ -37,8 +40,22 @@
 }
 
 .content {
+  width: 100%;
+  max-width: vars.$max-content-width ;
   padding-left: vars.$gap-mobile;
   padding-right: vars.$gap-mobile;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-row-gap: 3rem;
+
+  @media screen and (min-width: vars.$breakpoint-desktop){
+    padding-left: vars.$gap-desktop;
+    padding-right: vars.$gap-desktop;
+  }
+}
+.information {
+  width: 100%;
 }
 
 .cart {
