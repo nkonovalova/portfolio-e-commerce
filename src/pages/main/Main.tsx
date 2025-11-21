@@ -6,6 +6,7 @@ function Main() {
 	return (
 		<PageLayout topInfoBlock={<TopAdBlock />}>
 			<SectionsBlock />
+			<div>CI/CD Test!!!</div>
 		</PageLayout>
 	);
 }
