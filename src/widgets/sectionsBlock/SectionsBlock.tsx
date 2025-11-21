@@ -3,8 +3,14 @@ import ImgDining from "./img/image 106.jpg";
 import ImgLiving from "./img/image 100.jpg";
 import ImgBedroom from "./img/image 101.jpg";
 import SectionCard from "./sectionCard/SectionCard.tsx";
+import type { JSX } from "react";
 
-function SectionsBlock() {
+/**
+ * A component that displays a block of section cards to browse product categories.
+ * It features a main header and a list of categories like "Dining", "Living", and "Bedroom".
+ * @returns {JSX.Element} The rendered SectionsBlock component.
+ */
+function SectionsBlock(): JSX.Element {
 	return (
 		<div className={styles.wrapper}>
 			<h2 className={styles.sectionHeader}>Browse The Range</h2>

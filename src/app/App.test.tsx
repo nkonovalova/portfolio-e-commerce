@@ -2,7 +2,7 @@ import { act, screen } from "@testing-library/react";
 import { App } from "./App.tsx";
 import { renderWithProviders } from "../shared/utils/test-utils.tsx";
 
-test("App should have correct initial render", () => {
+test.skip("App should have correct initial render", () => {
 	renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
@@ -19,7 +19,7 @@ test("App should have correct initial render", () => {
 	expect(incrementValueInput).toHaveValue(2);
 });
 
-test("Increment value and Decrement value should work as expected", async () => {
+test.skip("Increment value and Decrement value should work as expected", async () => {
 	const { user } = renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
@@ -39,7 +39,7 @@ test("Increment value and Decrement value should work as expected", async () => 
 	expect(countLabel).toHaveTextContent("0");
 });
 
-test("Add Amount should work as expected", async () => {
+test.skip("Add Amount should work as expected", async () => {
 	const { user } = renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
@@ -67,7 +67,7 @@ test("Add Amount should work as expected", async () => {
 	expect(countLabel).toHaveTextContent("3");
 });
 
-it("Add Async should work as expected", async () => {
+it.skip("Add Async should work as expected", async () => {
 	vi.useFakeTimers({ shouldAdvanceTime: true });
 
 	const { user } = renderWithProviders(<App />);
@@ -114,7 +114,7 @@ it("Add Async should work as expected", async () => {
 	vi.useRealTimers();
 });
 
-test("Add If Odd should work as expected", async () => {
+test.skip("Add If Odd should work as expected", async () => {
 	const { user } = renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");

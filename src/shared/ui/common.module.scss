@@ -1,16 +1,16 @@
 @use "./variables.module.scss" as vars;
 .link {
-  color: vars.$color-text-main;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
+	color: vars.$color-text-main;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 h1 {
-  font-size: 3rem;
+	font-size: 3rem;
 }
 
 h2 {
-  font-size: 2rem;
+	font-size: 2rem;
 }

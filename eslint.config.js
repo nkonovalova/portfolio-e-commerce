@@ -21,6 +21,7 @@ const eslintConfig = defineConfig(
 			"**/.tmp/",
 			"**/.yarn/",
 			"**/coverage/",
+			"**/backend/",
 		],
 	},
 	{

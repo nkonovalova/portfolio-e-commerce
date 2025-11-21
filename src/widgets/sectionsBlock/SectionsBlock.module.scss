@@ -1,39 +1,39 @@
 @use "../../shared/ui/variables.module" as vars;
 
 .wrapper {
-  display: grid;
-  place-items: center;
+	display: grid;
+	place-items: center;
 }
 
 .sections {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 
-  @media screen and (min-width: vars.$breakpoint-tablet){
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 2rem;
-  }
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-column-gap: 2rem;
+	}
 }
 
 .section-item {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0 0 0;
+	list-style: none;
+	padding: 0;
+	margin: 2rem 0 0 0;
 
-  @media screen and (min-width: vars.$breakpoint-tablet){
-    margin-bottom: 0;
-  }
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		margin-bottom: 0;
+	}
 }
 
 .section-header {
-  text-align: center;
+	text-align: center;
 }
 
 .description {
-  font-size: 1.25rem;
-  color: vars.$color-text-secondary;
-  text-align: center;
-  margin-top: 0;
+	font-size: 1.25rem;
+	color: vars.$color-text-secondary;
+	text-align: center;
+	margin-top: 0;
 }

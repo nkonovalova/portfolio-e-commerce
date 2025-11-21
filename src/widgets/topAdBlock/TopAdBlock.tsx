@@ -1,8 +1,14 @@
 import styles from "./TopAdBlock.module.scss";
 import bgImg from "./img/scandinavian-interior-mockup-wall-decal-background.jpg";
 import { ButtonLink } from "../../shared/ui/buttonLink/ButtonLink.tsx";
+import type { JSX } from "react";
 
-function TopAdBlock() {
+/**
+ * A component that displays the main hero/advertisement block, typically at the top of a page.
+ * It features a background image, a title, descriptive text, and a call-to-action "Buy Now" button.
+ * @returns {JSX.Element} The rendered TopAdBlock component.
+ */
+function TopAdBlock(): JSX.Element {
 	return (
 		<div className={styles.topAdBlock}>
 			<img src={bgImg} alt="Top Ad Block" className={styles.bgImg} />

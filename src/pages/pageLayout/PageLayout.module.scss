@@ -1,67 +1,67 @@
 @use "../../shared/ui/variables.module.scss" as vars;
 
 .wrapper {
-  display: grid;
-  min-height: 100vh;
-  width: 100%;
-  grid-template-rows: 50px auto 50px;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+	display: grid;
+	min-height: 100vh;
+	width: 100%;
+	grid-template-rows: 50px auto 50px;
+	grid-template-areas:
+		"header"
+		"main"
+		"footer";
 
-  @media screen and (min-width: vars.$breakpoint-tablet) {
-    grid-template-rows: 100px auto 100px;
-  }
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		grid-template-rows: 100px auto 100px;
+	}
 }
 
 .header {
-  display: grid;
-  place-items: center;
-  background: vars.$color-bg-white;
+	display: grid;
+	place-items: center;
+	background: vars.$color-bg-white;
 
-  @media screen and (min-width: vars.$breakpoint-desktop){
-    border-bottom: 1px solid vars.$color-border;
-  }
+	@media screen and (min-width: vars.$breakpoint-desktop) {
+		border-bottom: 1px solid vars.$color-border;
+	}
 }
 
 .main {
-  grid-area: main;
-  display: grid;
-  place-items: center;
-  grid-row-gap: 3rem;
+	grid-area: main;
+	display: grid;
+	place-items: center;
+	grid-row-gap: 3rem;
 }
 
 .footer {
-  grid-area: footer;
-  border-top: 1px solid vars.$color-border;
-  display: grid;
-  place-items: center;
+	grid-area: footer;
+	border-top: 1px solid vars.$color-border;
+	display: grid;
+	place-items: center;
 }
 
 .content {
-  width: 100%;
-  max-width: vars.$max-content-width ;
-  padding-left: vars.$gap-mobile;
-  padding-right: vars.$gap-mobile;
-  box-sizing: border-box;
+	width: 100%;
+	max-width: vars.$max-content-width;
+	padding-left: vars.$gap-mobile;
+	padding-right: vars.$gap-mobile;
+	box-sizing: border-box;
 
-  display: grid;
-  grid-row-gap: 3rem;
+	display: grid;
+	grid-row-gap: 3rem;
 
-  @media screen and (min-width: vars.$breakpoint-desktop){
-    padding-left: vars.$gap-desktop;
-    padding-right: vars.$gap-desktop;
-  }
+	@media screen and (min-width: vars.$breakpoint-desktop) {
+		padding-left: vars.$gap-desktop;
+		padding-right: vars.$gap-desktop;
+	}
 }
 .information {
-  width: 100%;
+	width: 100%;
 }
 
 .cart {
-  display: none;
+	display: none;
 }
 
 .errors {
-  display: none;
+	display: none;
 }
