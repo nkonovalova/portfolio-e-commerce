@@ -128,8 +128,20 @@ components:
           type: string
           example: "USD"
         discount:
-          type: number
-          example: 10
+          type: object
+          properties:
+            new:
+              type: boolean
+              example: false
+            discount:
+              type: number
+              example: 10
+            last:
+              type: boolean
+              example: false
+            hot:
+              type: boolean
+              example: false
         category:
           type: string
           example: "Clothing"

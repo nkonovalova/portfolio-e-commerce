@@ -11,6 +11,15 @@ export type ProductDescriptionT = {
 	small: string;
 	full: string;
 };
+/**
+ * Represents the status of a product: new, discount, last, hot.
+ */
+export type ProductStatusT = {
+	new?: boolean,
+	discount?: number,
+	last?: boolean,
+	hot?: boolean,
+}
 
 /**
  * Represents a product, based on the API schema.
@@ -22,7 +31,7 @@ export type ProductT = {
 	description: ProductDescriptionT;
 	price: number;
 	currency: string;
-	discount: number;
+	status?: ProductStatusT;
 	category: string;
 	size: ProductSizeT[];
 	color: string[];
