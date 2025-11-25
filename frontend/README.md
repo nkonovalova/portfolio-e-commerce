@@ -60,7 +60,7 @@ App will start at:
 
 ## 🧾 API
 
-API documentation is described in [`openapi.yaml`](./openapi.yaml).  
+API documentation is described in [`API.yaml`](./API.yaml).  
 Example endpoints:
 
 - `GET /products` — returns full product list

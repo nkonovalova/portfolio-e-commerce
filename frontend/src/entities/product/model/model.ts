@@ -37,3 +37,6 @@ export type ProductT = {
 	color: string[];
 	rating: number;
 };
+
+
+export type ProductsApiResponseT = ProductT[];
