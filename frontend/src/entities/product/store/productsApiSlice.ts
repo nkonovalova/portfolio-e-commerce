@@ -13,7 +13,7 @@ const productsApiSlice = createApi({
 			transformResponse: (response: ProductsApiResponseT) => response,
 		}),
 	}),
-})
+});
 
 export const { useGetProductsQuery } = productsApiSlice;
 export default productsApiSlice;

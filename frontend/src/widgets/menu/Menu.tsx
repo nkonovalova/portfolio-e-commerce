@@ -35,17 +35,26 @@ function Menu() {
 			</ul>
 			<ul className={clsx(styles.list, styles.personalList)}>
 				<li className={clsx(styles.item, styles.icon)}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink
+						to={"/"}
+						className={clsx(commonStyles.link, styles.iconLink)}
+					>
 						<IconSearch />
 					</NavLink>
 				</li>
 				<li className={clsx(styles.item, styles.icon)}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink
+						to={"/"}
+						className={clsx(commonStyles.link, styles.iconLink)}
+					>
 						<IconHeart />
 					</NavLink>
 				</li>
 				<li className={clsx(styles.item, styles.icon)}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink
+						to={"/"}
+						className={clsx(commonStyles.link, styles.iconLink)}
+					>
 						<IconCart />
 					</NavLink>
 				</li>

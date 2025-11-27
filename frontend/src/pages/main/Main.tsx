@@ -2,6 +2,7 @@ import PageLayout from "../pageLayout/PageLayout.tsx";
 import TopAdBlock from "../../widgets/topAdBlock/TopAdBlock.tsx";
 import SectionsBlock from "../../widgets/sectionsBlock/SectionsBlock.tsx";
 import { useGetRelevantProductsQuery } from "../../entities/product/store/relevantProductsApiSlice.ts";
+import RelevantProducts from "./ui/relevantProducts/RelevantProducts.tsx";
 
 function Main() {
 	const {
@@ -16,7 +17,9 @@ function Main() {
 			errorMessage={relevantProductsError ? "Loading data error" : ""}
 		>
 			<SectionsBlock />
-			<div>CI/CD Test!!!</div>
+			{relevantProductsData && (
+				<RelevantProducts products={relevantProductsData} />
+			)}
 		</PageLayout>
 	);
 }

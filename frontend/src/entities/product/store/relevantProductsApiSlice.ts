@@ -3,13 +3,15 @@ import {
 	API_BASE_URL,
 	API_RELEVANT_PRODUCTS_URL,
 } from "../../../shared/api/api.js.ts";
+import type { ProductT } from "../model/model.ts";
 
 const relevantProductsApiSlice = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
 	reducerPath: "relevantProductsApi",
 	tagTypes: ["relevantProducts"],
 	endpoints: build => ({
-		getRelevantProducts: build.query({
+		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- Redux Toolkit wait for void arg
+		getRelevantProducts: build.query<ProductT[], void>({
 			query: () => API_RELEVANT_PRODUCTS_URL,
 			providesTags: ["relevantProducts"],
 		}),

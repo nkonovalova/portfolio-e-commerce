@@ -17,6 +17,7 @@ Create a component called **{{ComponentName}}** with the following requirements:
 I will choose where the logic should live:
 
 **Option A — Redux Toolkit**
+
 - Create a slice, selectors, actions, and async logic (if needed).
 - Slice name: {{SliceName}}
 - Initial state:
@@ -27,6 +28,7 @@ I will choose where the logic should live:
   {{AsyncLogic}}
 
 **Option B — Local State (useState or useReducer)**
+
 - Use {{StateHook (useState/useReducer)}} internally.
 - Local state fields:
   {{LocalStateFields}}
@@ -82,6 +84,7 @@ Props:
 🧪 Tests
 ====================================================
 Write Vitest + Testing Library tests covering:
+
 - render behavior
 - state and UI states
 - user interactions
@@ -92,6 +95,7 @@ Write Vitest + Testing Library tests covering:
 📦 Output Format
 ====================================================
 Provide the complete file set:
+
 - component file: {{ComponentName}}.tsx
 - styles: {{ComponentName}}.module.scss
 - Redux slice + selectors (if Redux chosen)

@@ -1,30 +1,30 @@
 @use "../variables.module" as vars;
 
 .spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid vars.$color-border; // The static part of the circle
-  border-top-color: vars.$color-golden; // The moving part of the circle
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+	width: 50px;
+	height: 50px;
+	border: 5px solid vars.$color-border; // The static part of the circle
+	border-top-color: vars.$color-golden; // The moving part of the circle
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
 }
 
 // Defines the rotation animation
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 // Visually hide text meant only for screen readers
 .srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
 }

@@ -42,11 +42,24 @@
 		border-radius: 0;
 		border-color: vars.$color-golden;
 		color: vars.$color-golden;
+
+		&:hover:not(:disabled) {
+			background-color: vars.$color-golden;
+			color: vars.$color-bg-white;
+			border-radius: 0;
+		}
 	}
 
 	&.filled {
 		background-color: vars.$color-golden;
 		color: vars.$color-bg-white;
 		border-radius: 0;
+
+		&:hover:not(:disabled) {
+			border-radius: 0;
+			border-color: vars.$color-golden;
+			color: vars.$color-golden;
+			background: none;
+		}
 	}
 }

@@ -12,7 +12,7 @@ import type { JSX } from "react";
  */
 function SectionsBlock(): JSX.Element {
 	return (
-		<div className={styles.wrapper}>
+		<section className={styles.wrapper}>
 			<h2 className={styles.sectionHeader}>Browse The Range</h2>
 			<p className={styles.description}>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -28,7 +28,7 @@ function SectionsBlock(): JSX.Element {
 					<SectionCard to="/bedroom" imgSrc={ImgBedroom} header="Bedroom" />
 				</li>
 			</ul>
-		</div>
+		</section>
 	);
 }
 

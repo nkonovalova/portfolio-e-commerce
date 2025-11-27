@@ -1,28 +1,29 @@
-import styles from "./Icon.module.scss";
-import Logo from "./img/logo.svg";
-import Search from "./img/search.svg";
-import Heart from "./img/heart.svg";
-import Cart from "./img/cart.svg";
-import Hamburger from "./img/threeLines.svg";
+import Logo from "./img/logo.svg?react";
+import Search from "./img/search.svg?react";
+import Heart from "./img/heart.svg?react";
+import Cart from "./img/cart.svg?react";
+import Hamburger from "./img/threeLines.svg?react";
+import Share from "./img/share.svg?react";
+import Compare from "./img/compare.svg?react";
 
 export function IconLogo() {
-	return <img className={styles.icon} src={Logo} alt={"Furniro"} />;
+	return <Logo />;
 }
 
 export function IconSearch() {
-	return <img className={styles.icon} src={Search} alt={"Search"} />;
+	return <Search />;
 }
 
 export function IconHeart() {
-	return <img className={styles.icon} src={Heart} alt={"Heart"} />;
+	return <Heart />;
 }
 
 export function IconCart() {
-	return <img className={styles.icon} src={Cart} alt={"Cart"} />;
+	return <Cart />;
 }
 
 export function IconHamburger() {
-	return <img className={styles.icon} src={Hamburger} alt={"Hamburger"} />;
+	return <Hamburger />;
 }
 
 export const IconCross = () => (
@@ -40,3 +41,11 @@ export const IconCross = () => (
 		/>
 	</svg>
 );
+
+export function IconShare() {
+	return <Share />;
+}
+
+export function IconCompare() {
+	return <Compare />;
+}

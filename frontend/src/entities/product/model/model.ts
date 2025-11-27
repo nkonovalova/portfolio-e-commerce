@@ -15,11 +15,11 @@ export type ProductDescriptionT = {
  * Represents the status of a product: new, discount, last, hot.
  */
 export type ProductStatusT = {
-	new?: boolean,
-	discount?: number,
-	last?: boolean,
-	hot?: boolean,
-}
+	new?: boolean;
+	discount?: number;
+	last?: boolean;
+	hot?: boolean;
+};
 
 /**
  * Represents a product, based on the API schema.
@@ -37,6 +37,5 @@ export type ProductT = {
 	color: string[];
 	rating: number;
 };
-
 
 export type ProductsApiResponseT = ProductT[];
