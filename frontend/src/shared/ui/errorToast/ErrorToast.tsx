@@ -9,10 +9,6 @@ type ErrorToastProps = {
 	 */
 	message: string;
 	/**
-	 * Callback function to be invoked when the close button is clicked.
-	 */
-	onClose: () => void;
-	/**
 	 * Optional additional class names for custom styling.
 	 */
 	className?: string;
@@ -27,7 +23,6 @@ type ErrorToastProps = {
  */
 export function ErrorToast({
 	message,
-	onClose,
 	className,
 }: ErrorToastProps): JSX.Element {
 	return (
@@ -40,7 +35,6 @@ export function ErrorToast({
 			<button
 				type="button"
 				className={styles.closeButton}
-				onClick={onClose}
 				aria-label="Close error message"
 			>
 				<IconCross />
