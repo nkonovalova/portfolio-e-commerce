@@ -1,96 +1,86 @@
-// import { render, screen, waitFor } from "@testing-library/react";
-// import { vi } from "vitest";
-// import { LazyImage } from "./LazyImage.tsx";
-//
-// // Mock IntersectionObserver
-// const mockIntersectionObserver = vi.fn();
-// vi.mock(
-// 	"intersection-observer",
-// 	() => ({
-// 		IntersectionObserver: mockIntersectionObserver,
-// 	}),
-// 	{ virtual: true },
-// );
-//
-// describe("LazyImage Component", () => {
-// 	let observe: (element: Element) => void;
-// 	let unobserve: (element: Element) => void;
-// 	let disconnect: () => void;
-// 	let intersectionCallback: (
-// 		entries: Partial<IntersectionObserverEntry>[],
-// 	) => void;
-//
-// 	beforeEach(() => {
-// 		observe = vi.fn();
-// 		unobserve = vi.fn();
-// 		disconnect = vi.fn();
-//
-// 		mockIntersectionObserver.mockImplementation(callback => {
-// 			intersectionCallback = callback;
-// 			return {
-// 				observe,
-// 				unobserve,
-// 				disconnect,
-// 				root: null,
-// 				rootMargin: "",
-// 				thresholds: [],
-// 			};
-// 		});
-// 	});
-//
-// 	afterEach(() => {
-// 		vi.clearAllMocks();
-// 	});
-//
-// 	test("initially renders a placeholder and not the image", () => {
-// 		render(<LazyImage src="test.jpg" alt="A test image" />);
-//
-// 		// The placeholder should be in the document
-// 		expect(screen.getByTestId("lazy-image-placeholder")).toBeInTheDocument();
-//
-// 		// The actual image element should not be rendered yet
-// 		expect(screen.queryByRole("img")).not.toBeInTheDocument();
-// 	});
-//
-// 	test("loads the image when it enters the viewport", async () => {
-// 		render(<LazyImage src="test.jpg" alt="A test image" />);
-//
-// 		const placeholder = screen.getByTestId("lazy-image-placeholder");
-//
-// 		// Check that the observer was set up correctly
-// 		expect(observe).toHaveBeenCalledWith(placeholder);
-//
-// 		// Simulate the element intersecting the viewport
-// 		intersectionCallback([{ isIntersecting: true }]);
-//
-// 		// Wait for the image to appear in the DOM
-// 		const image = await screen.findByRole("img");
-// 		expect(image).toBeInTheDocument();
-// 		expect(image).toHaveAttribute("src", "test.jpg");
-// 		expect(image).toHaveAttribute("alt", "A test image");
-//
-// 		// Check that the observer is disconnected after intersection
-// 		expect(disconnect).toHaveBeenCalled();
-// 	});
-//
-// 	test("passes through additional props and className to the placeholder", () => {
-// 		render(
-// 			<LazyImage
-// 				src="test.jpg"
-// 				alt="A test image"
-// 				className="custom-class"
-// 				data-custom="value"
-// 			/>,
-// 		);
-//
-// 		const placeholder = screen.getByTestId("lazy-image-placeholder");
-// 		expect(placeholder).toHaveClass("custom-class");
-//
-// 		// Simulate intersection to render the image
-// 		intersectionCallback([{ isIntersecting: true }]);
-//
-// 		// Check that other props are passed to the img element
-// 		const image = screen.getByRole("img");
-// 		expect(image).toHaveAttribute("data-custom", "value");
-// 	});
-// });
+import { describe, it, expect, afterEach, vi } from "vitest";
+import { render, screen, fireEvent, act } from "@testing-library/react";
+import { LazyImage } from "./LazyImage";
+import { mockIntersection } from "../../../setupTests"; // Import the helper
+
+describe("LazyImage", () => {
+	// Clean up mocks after each test
+	afterEach(() => {
+		vi.clearAllMocks();
+	});
+
+	it("renders placeholder initially and does not render the img tag", () => {
+		render(<LazyImage src="image.jpg" alt="test" />);
+
+		// The placeholder div should be present
+		expect(screen.getByTestId("lazy-image-placeholder")).toBeInTheDocument();
+
+		// The actual <img> element should not be in the DOM yet
+		expect(screen.queryByRole("img")).not.toBeInTheDocument();
+	});
+
+	it("renders the img tag after intersection is triggered", () => {
+		render(<LazyImage src="image.jpg" alt="test" />);
+
+		const placeholder = screen.getByTestId("lazy-image-placeholder");
+
+		// Simulate the element entering the viewport
+		act(() => {
+			mockIntersection(placeholder, true);
+		});
+
+		// Now the <img> element should be rendered
+		const img = screen.getByRole("img");
+		expect(img).toBeInTheDocument();
+		expect(img).toHaveAttribute("src", "image.jpg");
+	});
+
+	it("applies the 'loaded' class after the image's onLoad event fires", () => {
+		render(<LazyImage src="image.jpg" alt="test" />);
+
+		const placeholder = screen.getByTestId("lazy-image-placeholder");
+		act(() => {
+			mockIntersection(placeholder, true);
+		});
+
+		const img = screen.getByRole("img");
+
+		// The 'loaded' class should not be present before the event
+		expect(img).not.toHaveClass(/loaded/);
+
+		// Manually trigger the onLoad event
+		fireEvent.load(img);
+
+		// Now the class should be applied
+		expect(img).toHaveClass(/loaded/);
+	});
+
+	it("passes additional props to the img element", () => {
+		render(<LazyImage src="image.jpg" alt="test" data-custom="123" />);
+
+		const placeholder = screen.getByTestId("lazy-image-placeholder");
+		act(() => {
+			mockIntersection(placeholder, true);
+		});
+
+		const img = screen.getByRole("img");
+		expect(img).toHaveAttribute("data-custom", "123");
+	});
+
+	it("cleans up the observer when the component unmounts", () => {
+		const { unmount } = render(<LazyImage src="img.jpg" alt="t" />);
+		const placeholder = screen.getByTestId("lazy-image-placeholder");
+
+		// We need to spy on the prototype to check if unobserve is called
+		const unobserveSpy = vi.spyOn(
+			global.IntersectionObserver.prototype,
+			"unobserve",
+		);
+
+		// Unmount the component to trigger the cleanup effect
+		unmount();
+
+		// Check that unobserve was called with the correct element
+		expect(unobserveSpy).toHaveBeenCalledWith(placeholder);
+	});
+});

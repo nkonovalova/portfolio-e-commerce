@@ -27,6 +27,9 @@ export function LazyImage({
 	const placeholderRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		const node = placeholderRef.current; // сохраняем текущее значение ref
+
+		if (!node) return;
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
@@ -34,19 +37,13 @@ export function LazyImage({
 					observer.disconnect();
 				}
 			},
-			{
-				rootMargin: "100px",
-			},
+			{ rootMargin: "100px" },
 		);
 
-		if (placeholderRef.current) {
-			observer.observe(placeholderRef.current);
-		}
+		observer.observe(node);
 
 		return () => {
-			if (placeholderRef.current) {
-				observer.unobserve(placeholderRef.current);
-			}
+			observer.unobserve(node); // используем сохранённый node
 		};
 	}, []);
 
