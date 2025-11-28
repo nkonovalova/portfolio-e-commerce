@@ -8,6 +8,7 @@ import {
 	IconHeart,
 	IconShare,
 } from "../../shared/ui/icons/Icon.tsx";
+import { LazyImage } from "../../shared/ui/lazyImage/LazyImage.tsx";
 
 type ProductCardProps = {
 	product: ProductT;
@@ -52,7 +53,11 @@ export function ProductCard({
 	return (
 		<article className={clsx(styles.card, className)} aria-label={product.name}>
 			<div className={styles.imageWrapper}>
-				<img src={product.image} alt={product.name} className={styles.image} />
+				<LazyImage
+					src={product.image}
+					alt={product.name}
+					className={styles.image}
+				/>
 				{discountLabel && (
 					<span
 						className={clsx(styles.badge, {
