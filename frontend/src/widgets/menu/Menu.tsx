@@ -7,28 +7,34 @@ import {
 	IconSearch,
 } from "../../shared/ui/icons/Icon.tsx";
 import clsx from "clsx";
+import {
+	ABOUT_ROUTE,
+	CONTACT_ROUTE,
+	HOME_ROUTE,
+	PRODUCTS_ROUTE,
+} from "../../shared/routes.ts";
 
 function Menu() {
 	return (
 		<div className={styles.menu}>
 			<ul className={clsx(styles.list, styles.sectionList)}>
 				<li className={styles.sectionItem}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink to={HOME_ROUTE} className={commonStyles.link}>
 						Home
 					</NavLink>
 				</li>
 				<li className={styles.sectionItem}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink to={PRODUCTS_ROUTE} className={commonStyles.link}>
 						Shop
 					</NavLink>
 				</li>
 				<li className={styles.sectionItem}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink to={ABOUT_ROUTE} className={commonStyles.link}>
 						About
 					</NavLink>
 				</li>
 				<li className={styles.sectionItem}>
-					<NavLink to={"/"} className={commonStyles.link}>
+					<NavLink to={CONTACT_ROUTE} className={commonStyles.link}>
 						Contact
 					</NavLink>
 				</li>

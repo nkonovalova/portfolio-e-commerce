@@ -1,0 +1,53 @@
+@use "../../../shared/ui/variables.module" as vars;
+
+.breadcrumbs {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 auto;
+
+  max-width: vars.$max-content-width;
+  padding: 0 vars.$gap-mobile;
+
+  @media screen and (min-width: vars.$breakpoint-desktop) {
+    padding-left: vars.$gap-desktop;
+    padding-right: vars.$gap-desktop;
+  }
+}
+
+.listItem {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.link {
+  color: vars.$color-text-primary;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: vars.$color-text-primary;
+    text-decoration: underline;
+  }
+}
+
+.separator {
+  margin: 0 0.75rem;
+  color: vars.$color-text-primary;
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5px;
+}
+
+.currentPage {
+  color: vars.$color-text-primary;
+  font-weight: 500;
+}

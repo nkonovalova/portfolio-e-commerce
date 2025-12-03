@@ -31,7 +31,6 @@
 .main {
 	grid-area: main;
 	display: grid;
-	place-items: center;
 	grid-row-gap: 3rem;
 	position: relative; // Set as the positioning context for the loader
 }

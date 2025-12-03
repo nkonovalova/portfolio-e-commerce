@@ -95,16 +95,29 @@ Example:
 
 ---
 
-## 📋 TODO
+## 📋 Features
 
-- [ ] Add responsive layout
-- [ ] Integrate real API endpoints
-- [ ] Connect global error handling
-- [ ] Add filters and sorting for product list
-- [ ] Implement product detail page
-- [ ] Write unit tests for Redux slices
-- [ ] Configure CI/CD pipeline
-- [ ] Add i18n (optional)
+- [x] Responsive layout
+- [x] Header and Footer menus
+- [x] Integrate real API endpoints
+- [x] Connect global error handling
+- [x] Configure CI/CD pipeline
+- [ ] Main page
+  - [x] Top Ad block
+  - [x] Relevant products block
+  - [ ] Inspiration block with slider
+  - [ ] Gallery block
+- [ ] Shop page
+  - [ ] Page header
+  - [ ] Product list
+  - [ ] Frontend pagination
+  - [ ] Filter and filtration
+  - [ ] Sorting
+  - [ ] Bottom Ad block
+- [ ] Product detail page
+- [ ] Cart and Cart total page
+- [ ] Checkout
+- [ ] Contact
 
 ---
 

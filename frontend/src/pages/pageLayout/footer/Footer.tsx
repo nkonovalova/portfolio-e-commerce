@@ -4,6 +4,12 @@ import styles from "./Footer.module.scss";
 import clsx from "clsx";
 import { NavLink } from "react-router";
 import { Newsletter } from "../../../widgets/newsletter/Newsletter.tsx";
+import {
+	ABOUT_ROUTE,
+	CONTACT_ROUTE,
+	HOME_ROUTE,
+	PRODUCTS_ROUTE,
+} from "../../../shared/routes.ts";
 function Footer() {
 	return (
 		<div className={styles.footer}>
@@ -18,22 +24,22 @@ function Footer() {
 					<h3 className={clsx(styles.header, styles.contentHeader)}>Links</h3>
 					<ul className={clsx(styles.content, styles.list)}>
 						<li>
-							<NavLink to={"/"} className={commonStyles.link}>
+							<NavLink to={HOME_ROUTE} className={commonStyles.link}>
 								Home
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to={"/"} className={commonStyles.link}>
+							<NavLink to={PRODUCTS_ROUTE} className={commonStyles.link}>
 								Shop
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to={"/"} className={commonStyles.link}>
+							<NavLink to={ABOUT_ROUTE} className={commonStyles.link}>
 								About
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to={"/"} className={commonStyles.link}>
+							<NavLink to={CONTACT_ROUTE} className={commonStyles.link}>
 								Contact
 							</NavLink>
 						</li>
