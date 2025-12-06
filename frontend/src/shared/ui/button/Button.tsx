@@ -7,10 +7,12 @@ export enum ButtonStyle {
 	link = "link",
 	unfilled = "unfilled",
 	filled = "filled",
+	filledLight = "filledLight",
 }
 
 type ButtonPropsT = ComponentPropsWithoutRef<"button"> & {
 	style?: ButtonStyle;
+	className?: string;
 };
 
 /**
@@ -28,12 +30,13 @@ export function Button({
 	disabled,
 	type = "button",
 	style = ButtonStyle.default,
+	className,
 	...props
 }: ButtonPropsT) {
 	return (
 		<button
 			type={type}
-			className={clsx(styles.button, styles[style])}
+			className={clsx(styles.button, styles[style], className)}
 			disabled={disabled}
 			{...props}
 		>

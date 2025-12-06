@@ -32,7 +32,8 @@
 	grid-area: main;
 	display: grid;
 	grid-row-gap: 3rem;
-	position: relative; // Set as the positioning context for the loader
+	position: relative;
+	justify-items: center;
 }
 
 .footer {

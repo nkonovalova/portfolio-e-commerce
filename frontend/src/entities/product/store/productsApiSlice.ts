@@ -7,7 +7,8 @@ const productsApiSlice = createApi({
 	reducerPath: "productsApi",
 	tagTypes: ["products"],
 	endpoints: build => ({
-		getProducts: build.query({
+		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- Redux Toolkit wait for void arg
+		getProducts: build.query<ProductsApiResponseT, void>({
 			query: () => API_PRODUCTS_URL,
 			providesTags: ["products"],
 			transformResponse: (response: ProductsApiResponseT) => response,

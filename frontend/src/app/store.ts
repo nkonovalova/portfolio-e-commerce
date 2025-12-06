@@ -3,10 +3,15 @@ import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import productsApiSlice from "../entities/product/store/productsApiSlice.ts";
 import relevantProductsApiSlice from "../entities/product/store/relevantProductsApiSlice.ts";
+import { productsPaginationSlice } from "../pages/productsPage/store/productsPaginationSlice.ts";
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(productsApiSlice, relevantProductsApiSlice);
+const rootReducer = combineSlices(
+	productsApiSlice,
+	relevantProductsApiSlice,
+	productsPaginationSlice,
+);
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 

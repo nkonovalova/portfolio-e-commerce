@@ -62,4 +62,17 @@
 			background: none;
 		}
 	}
+
+	&.filled-light {
+		background-color: vars.$color-golden-light;
+		color: vars.$color-text-primary;
+		border-radius: 0;
+
+		&:hover:not(:disabled) {
+			border-radius: 0;
+			border-color: vars.$color-golden;
+			color: vars.$color-golden;
+			background: none;
+		}
+	}
 }
