@@ -3,6 +3,7 @@ import clsx from "clsx";
 import styles from "./Pagination.module.scss";
 import { Button, ButtonStyle } from "../../shared/ui/button/Button.tsx";
 import { IconChevronRight } from "../../shared/ui/icons/Icon.tsx";
+import { uniqueId } from "../../shared/utils/uniqId.ts";
 
 type PaginationProps = {
 	total: number;
@@ -69,6 +70,7 @@ export function Pagination({
 	return (
 		<nav aria-label="pagination" className={clsx(styles.pagination, className)}>
 			<Button
+				name="Prev"
 				style={ButtonStyle.filledLight}
 				onClick={onClickPrev}
 				disabled={active === 1}
@@ -77,12 +79,12 @@ export function Pagination({
 				<IconChevronRight className={clsx(styles.arrow, styles.prev)} />
 				<span className={styles.text}>Prev</span>
 			</Button>
-
 			<div className={styles.pageNumbers}>
 				{pageNumbers.map(page => {
-					if (page === DOTS_NUMBER) return <span>{DOTS}</span>;
+					if (page === DOTS_NUMBER) return <span key={uniqueId()}>{DOTS}</span>;
 					return (
 						<Button
+							name={page.toString()}
 							className={styles.navButton}
 							key={page}
 							style={
@@ -101,6 +103,7 @@ export function Pagination({
 			</div>
 
 			<Button
+				name="Next"
 				style={ButtonStyle.filledLight}
 				onClick={onClickNext}
 				disabled={active === total}

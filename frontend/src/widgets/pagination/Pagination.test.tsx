@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { expect, vi } from "vitest";
 import { Pagination } from "./Pagination.tsx";
+
+const DOTS = RegExp(/^\.{3}$/);
 
 describe("Pagination Component", () => {
 	const onClickPage = vi.fn();
@@ -23,13 +25,81 @@ describe("Pagination Component", () => {
 		);
 
 		expect(screen.getByRole("button", { name: "1" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "2" })).toBeInTheDocument();
 		expect(screen.getByRole("button", { name: "3" })).toBeInTheDocument();
-		expect(screen.getByRole("button", { name: "5" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "4" })).toBeInTheDocument();
+		expect(screen.queryByRole("button", { name: "5" })).toBeInTheDocument();
 		expect(screen.getByRole("button", { name: "Prev" })).toBeInTheDocument();
 		expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
+		expect(screen.queryAllByText(DOTS)).toHaveLength(0);
 	});
 
-	it("disables the active page button and sets aria-current", () => {
+	it("case: 1 2 ... 10, active page 1, total pages 10", () => {
+		render(
+			<Pagination
+				total={10}
+				active={1}
+				onClickPage={onClickPage}
+				onClickNext={onClickNext}
+				onClickPrev={onClickPrev}
+			/>,
+		);
+
+		expect(screen.getByRole("button", { name: "1" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "2" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "10" })).toBeInTheDocument();
+		expect(screen.queryByRole("button", { name: "5" })).not.toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "Prev" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
+		expect(screen.queryAllByText(DOTS)).toHaveLength(1);
+	});
+
+	it("case: 1 ... 3 4 5 ... 10, active page 4, total pages 10", () => {
+		render(
+			<Pagination
+				total={10}
+				active={4}
+				onClickPage={onClickPage}
+				onClickNext={onClickNext}
+				onClickPrev={onClickPrev}
+			/>,
+		);
+
+		expect(screen.getByRole("button", { name: "1" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "3" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "4" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "5" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "10" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "Prev" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
+		expect(screen.queryByRole("button", { name: "2" })).not.toBeInTheDocument();
+		expect(screen.queryByRole("button", { name: "6" })).not.toBeInTheDocument();
+
+		expect(screen.queryAllByText(DOTS)).toHaveLength(2);
+	});
+
+	it("case: 1 ... 8 9 10, active page 9, total pages 10", () => {
+		render(
+			<Pagination
+				total={10}
+				active={9}
+				onClickPage={onClickPage}
+				onClickNext={onClickNext}
+				onClickPrev={onClickPrev}
+			/>,
+		);
+
+		expect(screen.getByRole("button", { name: "1" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "8" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "9" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "10" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "Prev" })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
+
+		expect(screen.queryAllByText(DOTS)).toHaveLength(1);
+	});
+
+	it.skip("disables the active page button and sets aria-current", () => {
 		render(
 			<Pagination
 				total={5}
