@@ -19,29 +19,27 @@ function RelevantProducts({ products = [] }: RelevantProductsPropsT) {
 	return (
 		<section className={styles.wrapper}>
 			<h2 className={styles.header}>Our Products</h2>
-			<ul className={styles.products}>
+			<div className={styles.products}>
 				{products.length > 0 &&
 					products.map(product => (
-						<li className={styles.productItem}>
-							<ProductCard
-								key={product.id}
-								product={product}
-								onAddToCart={(id: ProductT["id"]) => {
-									handleAction("Add to Cart", id);
-								}}
-								onShare={(id: ProductT["id"]) => {
-									handleAction("Share", id);
-								}}
-								onCompare={(id: ProductT["id"]) => {
-									handleAction("Compare", id);
-								}}
-								onLike={(id: ProductT["id"]) => {
-									handleAction("Like", id);
-								}}
-							/>
-						</li>
+						<ProductCard
+							key={product.id}
+							product={product}
+							onAddToCart={(id: ProductT["id"]) => {
+								handleAction("Add to Cart", id);
+							}}
+							onShare={(id: ProductT["id"]) => {
+								handleAction("Share", id);
+							}}
+							onCompare={(id: ProductT["id"]) => {
+								handleAction("Compare", id);
+							}}
+							onLike={(id: ProductT["id"]) => {
+								handleAction("Like", id);
+							}}
+						/>
 					))}
-			</ul>
+			</div>
 			<div className={styles.showMore}>
 				<ButtonLink style={ButtonLinkStyle.unfilled} to={PRODUCTS_ROUTE}>
 					Show More
