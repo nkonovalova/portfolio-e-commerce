@@ -19,22 +19,34 @@ function Menu() {
 		<div className={styles.menu}>
 			<ul className={clsx(styles.list, styles.sectionList)}>
 				<li className={styles.sectionItem}>
-					<NavLink to={HOME_ROUTE} className={commonStyles.link}>
+					<NavLink
+						to={HOME_ROUTE}
+						className={clsx(commonStyles.link, styles.link)}
+					>
 						Home
 					</NavLink>
 				</li>
 				<li className={styles.sectionItem}>
-					<NavLink to={PRODUCTS_ROUTE} className={commonStyles.link}>
+					<NavLink
+						to={PRODUCTS_ROUTE}
+						className={clsx(commonStyles.link, styles.link)}
+					>
 						Shop
 					</NavLink>
 				</li>
 				<li className={styles.sectionItem}>
-					<NavLink to={ABOUT_ROUTE} className={commonStyles.link}>
+					<NavLink
+						to={ABOUT_ROUTE}
+						className={clsx(commonStyles.link, styles.link)}
+					>
 						About
 					</NavLink>
 				</li>
 				<li className={styles.sectionItem}>
-					<NavLink to={CONTACT_ROUTE} className={commonStyles.link}>
+					<NavLink
+						to={CONTACT_ROUTE}
+						className={clsx(commonStyles.link, styles.link)}
+					>
 						Contact
 					</NavLink>
 				</li>

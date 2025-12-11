@@ -68,3 +68,6 @@ export type ProductT = {
 };
 
 export type ProductsApiResponseT = ProductT[];
+
+export type ProductsCategoriesApiResponseT = string[];
+export type ProductsColorsApiResponseT = string[];

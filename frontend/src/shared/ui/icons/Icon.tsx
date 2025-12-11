@@ -5,6 +5,7 @@ import Cart from "./img/cart.svg?react";
 import Hamburger from "./img/threeLines.svg?react";
 import Share from "./img/share.svg?react";
 import Compare from "./img/compare.svg?react";
+import Filter from "./img/filter.svg?react";
 
 export function IconLogo() {
 	return <Logo />;
@@ -65,3 +66,24 @@ export const IconChevronRight = ({ className }: { className?: string }) => (
 		/>
 	</svg>
 );
+
+export const IconCheck = ({ className }: { className?: string }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		strokeWidth={3}
+		stroke="currentColor"
+		className={className}
+	>
+		<path
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			d="M4.5 12.75l6 6 9-13.5"
+		/>
+	</svg>
+);
+
+export function IconFilter() {
+	return <Filter />;
+}

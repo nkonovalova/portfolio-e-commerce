@@ -1,0 +1,49 @@
+@use "../variables.module" as vars;
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.labelText {
+  font-size: 1rem;
+  color: vars.$color-text-primary;
+  white-space: nowrap;
+}
+
+.selectContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.select {
+  appearance: none;
+  background-color: vars.$color-bg-white;
+  border: 1px solid vars.$color-border;
+  border-radius: 4px;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 1rem;
+  color: vars.$color-text-secondary;
+  cursor: pointer;
+  min-width: 150px;
+
+  &:focus {
+    outline: 2px solid vars.$color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Custom dropdown arrow
+.selectContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid vars.$color-text-primary;
+  border-right: 2px solid vars.$color-text-primary;
+  pointer-events: none;
+}

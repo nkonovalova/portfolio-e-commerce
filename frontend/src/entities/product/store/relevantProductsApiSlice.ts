@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
 	API_BASE_URL,
 	API_RELEVANT_PRODUCTS_URL,
-} from "../../../shared/api/api.js.ts";
+} from "../../../shared/api/api.ts";
 import type { ProductT } from "../model/model.ts";
 
 const relevantProductsApiSlice = createApi({

@@ -21,7 +21,7 @@
 	place-items: center;
 	background: vars.$color-bg-white;
 	position: relative;
-	z-index: 3;
+	z-index: 5;
 
 	@media screen and (min-width: vars.$breakpoint-desktop) {
 		border-bottom: 1px solid vars.$color-border;
