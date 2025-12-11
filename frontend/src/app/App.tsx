@@ -28,6 +28,7 @@ import { HOME_ROUTE, PRODUCTS_ROUTE } from "../shared/routes.ts";
 import Main from "../pages/main/Main.tsx";
 import ProductsPage from "../pages/productsPage/ProductsPage.tsx";
 import ProductPage from "../pages/productPage/ProductPage.tsx";
+import UIPage from "../pages/uiPage/UIPage.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
 						},
 					},
 				],
+			},
+			{
+				path: "/ui",
+				element: <UIPage />,
 			},
 		],
 	},

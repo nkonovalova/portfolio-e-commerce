@@ -1,4 +1,5 @@
 import type { ChangeEvent, ComponentProps, JSX } from "react";
+import { useEffect, useState } from "react";
 import { useId } from "react";
 import clsx from "clsx";
 import styles from "./Dropdown.module.scss";
@@ -9,8 +10,8 @@ type DropdownOption = {
 };
 
 type DropdownProps = {
-	label: string;
-	value: string;
+	label?: string;
+	value?: string;
 	options: DropdownOption[];
 	onChange: (value: string) => void;
 } & Omit<ComponentProps<"select">, "value" | "onChange">;
@@ -23,9 +24,16 @@ export function Dropdown({
 	className,
 	...props
 }: DropdownProps): JSX.Element {
+	const [dropdownValue, setDropdownValue] = useState("");
+
 	const id = useId();
 
+	useEffect(() => {
+		setDropdownValue(value?.toString() ?? "");
+	}, [value]);
+
 	const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+		setDropdownValue(event.target.value);
 		onChange(event.target.value);
 	};
 
@@ -35,7 +43,7 @@ export function Dropdown({
 			<div className={styles.selectContainer}>
 				<select
 					id={id}
-					value={value}
+					value={dropdownValue}
 					onChange={handleChange}
 					className={styles.select}
 					{...props}

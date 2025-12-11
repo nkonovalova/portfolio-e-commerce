@@ -1,10 +1,17 @@
 import type { ChangeEvent } from "react";
-import React, { useId, type ComponentProps, type Ref } from "react";
+import {
+	useId,
+	type ComponentProps,
+	type Ref,
+	useEffect,
+	useState,
+} from "react";
 import styles from "./Input.module.scss";
 import clsx from "clsx";
 import useDebounce from "../../hooks/useDebounce.ts";
 
 type InputProps = {
+	value?: string;
 	label?: string;
 	error?: string;
 	className?: string;
@@ -14,6 +21,7 @@ type InputProps = {
 } & Omit<ComponentProps<"input">, "ref" | "onChange">;
 
 function Input({
+	value,
 	label,
 	error,
 	className,
@@ -23,12 +31,16 @@ function Input({
 	...props
 }: InputProps) {
 	const inputId = useId();
-	const [inputValue, setInputValue] = React.useState<string>("");
+	const [inputValue, setInputValue] = useState<string>("");
 	const debouncedValue = useDebounce<string>(inputValue, debounceDelay);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		onChange(debouncedValue);
 	}, [debouncedValue, onChange]);
+
+	useEffect(() => {
+		setInputValue(value?.toString() ?? "");
+	}, [value]);
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value);
@@ -39,7 +51,8 @@ function Input({
 			<span className={styles.labelText}>{label}</span>
 			<input
 				id={inputId}
-				ref={ref} // Pass the ref directly to the input element
+				ref={ref}
+				value={inputValue}
 				className={clsx(styles.input, error && styles.inputError)}
 				aria-invalid={!!error}
 				aria-describedby={error ? `${inputId}-error` : undefined}

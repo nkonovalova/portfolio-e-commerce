@@ -4,11 +4,13 @@
   display: inline-flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .labelText {
   font-size: 1rem;
   color: vars.$color-text-primary;
+  cursor: pointer;
   white-space: nowrap;
 }
 
@@ -29,12 +31,12 @@
   min-width: 150px;
 
   &:focus {
-    outline: 2px solid vars.$color-primary;
-    outline-offset: 2px;
+    outline: none;
+    border-color: vars.$color-golden;
+    box-shadow: 0 0 0 3px vars.$color-golden-shadow;
   }
 }
 
-// Custom dropdown arrow
 .selectContainer::after {
   content: "";
   position: absolute;
