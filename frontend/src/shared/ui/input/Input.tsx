@@ -11,7 +11,7 @@ import clsx from "clsx";
 import useDebounce from "../../hooks/useDebounce.ts";
 
 type InputProps = {
-	value?: string;
+	value?: string | number;
 	label?: string;
 	error?: string;
 	className?: string;

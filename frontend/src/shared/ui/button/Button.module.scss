@@ -6,10 +6,11 @@
 	justify-content: center;
 	padding: 12px 24px;
 	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
 	cursor: pointer;
 	box-sizing: border-box;
 	border: 1px solid vars.$color-border;
-	border-radius: 8px;
+	border-radius: vars.$ui-border-radius;
 	background-color: vars.$color-bg-white;
 	color: vars.$color-text-primary;
 	transition:

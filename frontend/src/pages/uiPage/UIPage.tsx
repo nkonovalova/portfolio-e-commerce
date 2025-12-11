@@ -2,6 +2,7 @@ import PageLayout from "../pageLayout/PageLayout.tsx";
 import Input from "../../shared/ui/input/Input.tsx";
 import { Dropdown } from "../../shared/ui/dropdown/Dropdown.tsx";
 import { Button } from "../../shared/ui/button/Button.tsx";
+import { Checkbox } from "../../shared/ui/checkbox/Checkbox.tsx";
 
 const SORT_OPTIONS = [
 	{ value: "default", label: "Default" },
@@ -33,6 +34,12 @@ function UIPage() {
 			<div>
 				<h1>Buttons</h1>
 				<Button>Hey!</Button>
+			</div>
+			<div>
+				<h1>Checkbox</h1>
+				<Checkbox label={1} />
+				<h2>Checkbox with color</h2>
+				<Checkbox color={"red"} />
 			</div>
 		</PageLayout>
 	);

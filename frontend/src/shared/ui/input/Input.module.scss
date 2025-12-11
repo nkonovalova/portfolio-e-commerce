@@ -20,7 +20,7 @@
 	box-sizing: border-box;
 	font-size: 1rem;
 	border: 1px solid vars.$color-border;
-	border-radius: 8px;
+	border-radius: vars.$ui-border-radius;
 	background-color: vars.$color-bg-white;
 	color: vars.$color-text-primary;
 	transition:

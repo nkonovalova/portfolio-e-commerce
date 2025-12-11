@@ -6,13 +6,15 @@ import styles from "./Checkbox.module.scss";
 import { IconCheck } from "../icons/Icon.tsx";
 
 type CheckboxProps = {
-	label: string | ReactNode;
+	label?: string | ReactNode;
 	value?: boolean;
+	color?: string;
 	onChange?: (checked: boolean) => void;
 } & Omit<ComponentProps<"input">, "value" | "onChange" | "type">;
 
 export function Checkbox({
 	label,
+	color,
 	value = false,
 	onChange = () => null,
 	className,
@@ -39,10 +41,11 @@ export function Checkbox({
 			<span
 				className={clsx(styles.customCheckbox, checked && styles.checked)}
 				aria-hidden="true"
+				style={{ backgroundColor: color }}
 			>
-				{checked && <IconCheck className={styles.checkIcon} />}
+				<IconCheck className={styles.checkIcon} />
 			</span>
-			<span className={styles.labelText}>{label}</span>
+			{label && <span className={styles.labelText}>{label}</span>}
 		</label>
 	);
 }

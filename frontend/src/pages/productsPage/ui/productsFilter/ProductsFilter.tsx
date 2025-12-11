@@ -16,6 +16,7 @@ import {
 	toggleSize,
 	toggleStatus,
 } from "../../store/productsFilterSlice.ts";
+import clsx from "clsx";
 
 type ProductsFilterProps = {
 	categories?: string[];
@@ -43,7 +44,7 @@ function ProductsFilter({ categories = [], colors = [] }: ProductsFilterProps) {
 		items: Record<string, boolean>,
 		action: (payload: string) => { payload: string; type: string },
 	) => {
-		if (Object.keys(items).length === 0) return <p>No options available.</p>;
+		if (Object.keys(items).length === 0) return null;
 		return Object.entries(items).map(([item, isChecked]) => (
 			<Checkbox
 				key={item}
@@ -59,13 +60,7 @@ function ProductsFilter({ categories = [], colors = [] }: ProductsFilterProps) {
 		return Object.entries(filters.colors).map(([color, isChecked]) => (
 			<Checkbox
 				key={color}
-				label={
-					<span
-						className={styles.colorLabel}
-						style={{ backgroundColor: color }}
-						title={color}
-					/>
-				}
+				color={color}
 				value={isChecked}
 				onChange={() => dispatch(toggleColor(color))}
 			/>
@@ -85,22 +80,22 @@ function ProductsFilter({ categories = [], colors = [] }: ProductsFilterProps) {
 			</div>
 
 			<div className={styles.filterGrid}>
-				<fieldset className={styles.filterBlock}>
+				<fieldset className={clsx(styles.filterBlock, styles.categories)}>
 					<legend className={styles.legend}>Categories</legend>
 					{renderCheckboxes(filters.categories, toggleCategory)}
 				</fieldset>
 
-				<fieldset className={styles.filterBlock}>
+				<fieldset className={clsx(styles.filterBlock, styles.sizes)}>
 					<legend className={styles.legend}>Sizes</legend>
 					{renderCheckboxes(filters.sizes, toggleSize)}
 				</fieldset>
 
-				<fieldset className={styles.filterBlock}>
+				<fieldset className={clsx(styles.filterBlock, styles.colors)}>
 					<legend className={styles.legend}>Colors</legend>
 					<div className={styles.colorGrid}>{renderColorCheckboxes()}</div>
 				</fieldset>
 
-				<fieldset className={styles.filterBlock}>
+				<fieldset className={clsx(styles.filterBlock, styles.price)}>
 					<legend className={styles.legend}>Price Range</legend>
 					<div className={styles.priceInputs}>
 						<Input
@@ -122,7 +117,7 @@ function ProductsFilter({ categories = [], colors = [] }: ProductsFilterProps) {
 					</div>
 				</fieldset>
 
-				<fieldset className={styles.filterBlock}>
+				<fieldset className={clsx(styles.filterBlock, styles.status)}>
 					<legend className={styles.legend}>Status</legend>
 					{renderCheckboxes(filters.status, toggleStatus)}
 				</fieldset>

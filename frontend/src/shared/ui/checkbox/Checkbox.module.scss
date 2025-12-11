@@ -5,10 +5,9 @@
   align-items: center;
   cursor: pointer;
   user-select: none;
-  gap: 0.75rem; // Space between checkbox and label
+  gap: 0.75rem;
 }
 
-// Visually hide the native checkbox but keep it accessible
 .input {
   position: absolute;
   opacity: 0;
@@ -35,20 +34,23 @@
           background-color 0.2s ease,
           border-color 0.2s ease;
 
-  // Style for the checked state
   &.checked {
     background-color: vars.$color-primary;
     border-color: vars.$color-primary;
+
+    & .check-icon {
+      visibility: visible;
+    }
   }
 }
 
-.checkIcon {
+.check-icon {
   width: 14px;
   height: 14px;
   color: white;
+  visibility: hidden;
 }
 
-// Focus styles for accessibility
 .input:focus-visible + .customCheckbox {
   outline: 2px solid vars.$color-primary;
   outline-offset: 2px;

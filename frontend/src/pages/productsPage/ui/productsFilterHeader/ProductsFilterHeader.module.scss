@@ -2,7 +2,6 @@
 
 .header {
   display: flex;
-  //flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
@@ -13,14 +12,14 @@
 
 }
 
-.leftControls,
-.rightControls {
+.left-controls,
+.right-controls {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.filterButton {
+.filter-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -37,10 +36,10 @@
   }
 }
 
-.resultsInfo {
+.results-info {
   display: none;
 
-  @media screen and (min-width: vars.$breakpoint-tablet) {
+  @media screen and (min-width: vars.$breakpoint-desktop) {
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -53,7 +52,7 @@
   background-color: vars.$color-border;
 }
 
-.showInput {
+.show-input {
   // Custom styling for the "Show" input wrapper
   :global(.Input_wrapper__*) {
     gap: 1rem;
@@ -63,5 +62,37 @@
     width: 60px;
     padding: 0.5rem;
     text-align: center;
+  }
+}
+
+.order {
+  & label {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    @media screen and (min-width: vars.$breakpoint-tablet) {
+      display: inline-flex;
+      flex-flow: row;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+
+.pages {
+  & label {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    @media screen and (min-width: vars.$breakpoint-tablet) {
+      display: inline-flex;
+      flex-flow: row;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 }
