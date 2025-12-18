@@ -85,3 +85,16 @@
   border-radius: 4px;
   border: 1px solid vars.$color-border;
 }
+
+.reset-block {
+  border-top: vars.$color-border 1px solid;
+
+  @media screen and (min-width: vars.$breakpoint-tablet) {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.reset-button {
+  margin-top: 1rem;
+}

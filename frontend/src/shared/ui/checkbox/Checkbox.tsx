@@ -1,4 +1,5 @@
 import type { ChangeEvent, ComponentProps, JSX, ReactNode } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useId } from "react";
 import clsx from "clsx";
@@ -27,6 +28,10 @@ export function Checkbox({
 		setChecked(event.target.checked);
 		onChange(event.target.checked);
 	};
+
+	useEffect(() => {
+		setChecked(value);
+	}, [value]);
 
 	return (
 		<label htmlFor={id} className={clsx(styles.wrapper, className)}>

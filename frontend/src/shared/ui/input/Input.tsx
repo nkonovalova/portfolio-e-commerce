@@ -8,7 +8,6 @@ import {
 } from "react";
 import styles from "./Input.module.scss";
 import clsx from "clsx";
-import useDebounce from "../../hooks/useDebounce.ts";
 
 type InputProps = {
 	value?: string | number;
@@ -16,7 +15,6 @@ type InputProps = {
 	error?: string;
 	className?: string;
 	ref?: Ref<HTMLInputElement>;
-	debounceDelay?: number;
 	onChange?: (value: string) => void;
 } & Omit<ComponentProps<"input">, "ref" | "onChange">;
 
@@ -27,16 +25,10 @@ function Input({
 	className,
 	ref,
 	onChange = () => null,
-	debounceDelay = 500,
 	...props
 }: InputProps) {
 	const inputId = useId();
 	const [inputValue, setInputValue] = useState<string>("");
-	const debouncedValue = useDebounce<string>(inputValue, debounceDelay);
-
-	useEffect(() => {
-		onChange(debouncedValue);
-	}, [debouncedValue, onChange]);
 
 	useEffect(() => {
 		setInputValue(value?.toString() ?? "");
@@ -44,6 +36,7 @@ function Input({
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value);
+		onChange(event.target.value);
 	};
 
 	return (

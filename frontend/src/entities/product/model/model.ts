@@ -36,7 +36,9 @@ export enum ProductStatusE {
 	HOT = "hot",
 }
 
-export const PRODUCT_STATUS = [
+export type ProductStatusValuesT = keyof ProductStatusE;
+
+export const PRODUCT_STATUSES = [
 	ProductStatusE.NEW,
 	ProductStatusE.DISCOUNT,
 	ProductStatusE.LAST,
@@ -60,9 +62,9 @@ export type ProductT = {
 	description: ProductDescriptionT;
 	price: number;
 	currency: string;
-	status?: ProductStatusT;
+	status: ProductStatusT;
 	category: string;
-	size: ProductSizeT[];
+	size: ProductSizeE[];
 	color: string[];
 	rating: number;
 };

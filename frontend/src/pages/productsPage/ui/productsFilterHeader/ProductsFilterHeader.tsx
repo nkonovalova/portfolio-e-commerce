@@ -6,8 +6,8 @@ import Input from "../../../../shared/ui/input/Input.tsx";
 import { Dropdown } from "../../../../shared/ui/dropdown/Dropdown.tsx";
 
 type ProductFilterHeaderProps = {
-	elementsTotalCount: number;
-	elementsPerPage: number;
+	itemsTotal: number;
+	itemsPerPage: number;
 	currentPage: number;
 	currentOrder: string;
 	onToggleFilter: () => void;
@@ -24,16 +24,16 @@ const SORT_OPTIONS = [
 ];
 
 export function ProductsFilterHeader({
-	elementsTotalCount,
-	elementsPerPage,
+	itemsTotal,
+	itemsPerPage,
 	currentPage,
 	currentOrder,
 	onToggleFilter,
 	onChangeElementsPerPage,
 	onChangeSort,
 }: ProductFilterHeaderProps): JSX.Element {
-	const firstItem = (currentPage - 1) * elementsPerPage + 1;
-	const lastItem = Math.min(currentPage * elementsPerPage, elementsTotalCount);
+	const firstItem = (currentPage - 1) * itemsPerPage + 1;
+	const lastItem = Math.min(currentPage * itemsPerPage, itemsTotal);
 
 	return (
 		<header className={styles.header}>
@@ -45,7 +45,7 @@ export function ProductsFilterHeader({
 				<div className={styles.resultsInfo}>
 					<span className={styles.divider} />
 					<span>
-						Showing {firstItem}–{lastItem} of {elementsTotalCount} results
+						Showing {firstItem}–{lastItem} of {itemsTotal} results
 					</span>
 				</div>
 			</div>
@@ -57,9 +57,9 @@ export function ProductsFilterHeader({
 						type="number"
 						min={1}
 						className={styles.showInput}
-						value={elementsPerPage.toString()}
+						value={itemsPerPage.toString()}
 						onChange={val => {
-							onChangeElementsPerPage(Number(val) || 1);
+							onChangeElementsPerPage(Number(val) || 16);
 						}}
 						debounceDelay={500}
 					/>

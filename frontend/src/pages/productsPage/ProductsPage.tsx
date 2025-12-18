@@ -10,8 +10,10 @@ import {
 	nextPage,
 	previousPage,
 	selectActivePage,
+	selectItemsPerPage,
 	selectTotalPages,
 	setActive,
+	setItemsPerPage,
 	setTotal,
 } from "./store/productsPaginationSlice.ts";
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
@@ -23,8 +25,8 @@ import { Pagination } from "../../widgets/pagination/Pagination.tsx";
 import ProductsFilter from "./ui/productsFilter/ProductsFilter.tsx";
 import { ProductsFilterHeader } from "./ui/productsFilterHeader/ProductsFilterHeader.tsx";
 import clsx from "clsx";
-
-const ITEMS_PER_PAGE = 16;
+import { selectAllFilters } from "./store/productsFilterSlice.ts";
+import { toFilterProducts } from "./lib/filter.ts";
 
 function ProductsPage() {
 	const [filterShow, setFilterShow] = useState(false);
@@ -49,31 +51,40 @@ function ProductsPage() {
 
 	const totalPages = useAppSelector(selectTotalPages);
 	const activePage = useAppSelector(selectActivePage);
+	const itemsPerPage = useAppSelector(selectItemsPerPage);
+	const productsFilter = useAppSelector(selectAllFilters);
 
-	useEffect(() => {
-		if (productsData) {
-			dispatch(setTotal(Math.ceil(productsData.length / ITEMS_PER_PAGE)));
-			dispatch(setActive(1));
-		}
-	}, [productsData, dispatch]);
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, [activePage, totalPages]);
+	const filteredProducts = useMemo(() => {
+		if (!productsData) return [];
+		return toFilterProducts(productsData, productsFilter);
+	}, [productsData, productsFilter]);
 
 	const currentProducts = useMemo(() => {
-		if (!productsData) return [];
-		const startIndex = (activePage - 1) * ITEMS_PER_PAGE;
-		const endIndex = startIndex + ITEMS_PER_PAGE;
-		return productsData.slice(startIndex, endIndex);
-	}, [productsData, activePage]);
+		const startIndex = (activePage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		return filteredProducts.slice(startIndex, endIndex);
+	}, [itemsPerPage, filteredProducts, activePage]);
 
+	useEffect(() => {
+		// window.scrollTo(0, 0);
+	}, [activePage, totalPages]);
+
+	useEffect(() => {
+		dispatch(setTotal(Math.ceil(filteredProducts.length / itemsPerPage)));
+		dispatch(setActive(1));
+	}, [filteredProducts, itemsPerPage, dispatch]);
+
+	//TODO: remove action dummy function for cart, sharing, compare and like features
 	const handleAction = (action: string, productId: string) => {
 		console.log(`${action} clicked for product: ${productId}`);
 	};
 
 	const toggleFilter = () => {
 		setFilterShow(!filterShow);
+	};
+
+	const changeItemsPerPage = (value: number) => {
+		dispatch(setItemsPerPage(value));
 	};
 
 	const isError =
@@ -90,14 +101,12 @@ function ProductsPage() {
 						<div className={styles.filter}>
 							<div className={styles.filterHeader}>
 								<ProductsFilterHeader
-									elementsTotalCount={productsData?.length ?? 0}
-									elementsPerPage={ITEMS_PER_PAGE}
+									itemsTotal={filteredProducts.length}
+									itemsPerPage={itemsPerPage}
 									currentPage={activePage}
 									currentOrder={"default"}
 									onToggleFilter={toggleFilter}
-									onChangeElementsPerPage={() => {
-										console.log("onChangeElementsPerPage");
-									}}
+									onChangeElementsPerPage={changeItemsPerPage}
 									onChangeSort={() => {
 										console.log("onChangeSort");
 									}}
