@@ -17,7 +17,7 @@ import {
 	setTotal,
 } from "./store/productsPaginationSlice.ts";
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductCard } from "../../widgets/productCard/ProductCard.tsx";
 import type { ProductT } from "../../entities/product/model/model.ts";
 import styles from "./ProductsPage.module.scss";
@@ -27,8 +27,11 @@ import { ProductsFilterHeader } from "./ui/productsFilterHeader/ProductsFilterHe
 import clsx from "clsx";
 import { selectAllFilters } from "./store/productsFilterSlice.ts";
 import { toFilterProducts } from "./lib/filter.ts";
+import useDebounce from "../../shared/hooks/useDebounce.ts";
 
 function ProductsPage() {
+	const productContainerRef = useRef<HTMLDivElement>(null);
+	const filterContainerRef = useRef<HTMLDivElement>(null);
 	const [filterShow, setFilterShow] = useState(false);
 	const dispatch = useAppDispatch();
 	const {
@@ -53,11 +56,12 @@ function ProductsPage() {
 	const activePage = useAppSelector(selectActivePage);
 	const itemsPerPage = useAppSelector(selectItemsPerPage);
 	const productsFilter = useAppSelector(selectAllFilters);
+	const debouncedProductFilter = useDebounce(productsFilter, 500);
 
 	const filteredProducts = useMemo(() => {
 		if (!productsData) return [];
-		return toFilterProducts(productsData, productsFilter);
-	}, [productsData, productsFilter]);
+		return toFilterProducts(productsData, debouncedProductFilter);
+	}, [productsData, debouncedProductFilter]);
 
 	const currentProducts = useMemo(() => {
 		const startIndex = (activePage - 1) * itemsPerPage;
@@ -66,13 +70,35 @@ function ProductsPage() {
 	}, [itemsPerPage, filteredProducts, activePage]);
 
 	useEffect(() => {
-		// window.scrollTo(0, 0);
-	}, [activePage, totalPages]);
-
-	useEffect(() => {
 		dispatch(setTotal(Math.ceil(filteredProducts.length / itemsPerPage)));
 		dispatch(setActive(1));
 	}, [filteredProducts, itemsPerPage, dispatch]);
+
+	useEffect(() => {
+		if (!filterShow) return;
+		const handleClickOutside = (
+			event: MouseEvent | TouchEvent | KeyboardEvent,
+		) => {
+			if (event.type === "keydown" && "key" in event && event.key !== "Escape")
+				return;
+			if (!filterContainerRef.current?.contains(event.target as Node)) {
+				setFilterShow(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		document.addEventListener("touchstart", handleClickOutside);
+		document.addEventListener("keydown", handleClickOutside);
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("touchstart", handleClickOutside);
+		};
+	}, [filterShow]);
+
+	const scrollTop = () => {
+		productContainerRef.current?.scrollIntoView();
+	};
 
 	//TODO: remove action dummy function for cart, sharing, compare and like features
 	const handleAction = (action: string, productId: string) => {
@@ -98,7 +124,7 @@ function ProductsPage() {
 						<PagesHeader header="Shop" imgSrc={HeaderImg} />
 					</div>
 					{!productsCategoriesIsLoading && !productsColorsIsLoading && (
-						<div className={styles.filter}>
+						<div className={styles.filter} ref={filterContainerRef}>
 							<div className={styles.filterHeader}>
 								<ProductsFilterHeader
 									itemsTotal={filteredProducts.length}
@@ -131,7 +157,7 @@ function ProductsPage() {
 			isLoading={productsIsLoading}
 			errorMessage={isError ? "Loading data error" : ""}
 		>
-			<div className={styles.products}>
+			<div className={styles.products} ref={productContainerRef}>
 				{currentProducts.length > 0 &&
 					currentProducts.map(product => (
 						<ProductCard
@@ -154,9 +180,18 @@ function ProductsPage() {
 			<Pagination
 				total={totalPages}
 				active={activePage}
-				onClickPage={(page: number) => dispatch(setActive(page))}
-				onClickNext={() => dispatch(nextPage())}
-				onClickPrev={() => dispatch(previousPage())}
+				onClickPage={(page: number) => {
+					dispatch(setActive(page));
+					scrollTop();
+				}}
+				onClickNext={() => {
+					dispatch(nextPage());
+					scrollTop();
+				}}
+				onClickPrev={() => {
+					dispatch(previousPage());
+					scrollTop();
+				}}
 				className={styles.pagination}
 			/>
 		</PageLayout>
