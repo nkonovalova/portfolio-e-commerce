@@ -28,6 +28,10 @@ import clsx from "clsx";
 import { selectAllFilters } from "./store/productsFilterSlice.ts";
 import { toFilterProducts } from "./lib/filter.ts";
 import useDebounce from "../../shared/hooks/useDebounce.ts";
+import { getSort, setSort } from "./store/productsSortSlice.ts";
+import type { SortT } from "../../shared/model/sort.ts";
+import { SortTypeE } from "../../shared/model/sort.ts";
+import { sortObjectsByKey } from "../../shared/utils/sort/sort.ts";
 
 function ProductsPage() {
 	const productContainerRef = useRef<HTMLDivElement>(null);
@@ -55,6 +59,7 @@ function ProductsPage() {
 	const totalPages = useAppSelector(selectTotalPages);
 	const activePage = useAppSelector(selectActivePage);
 	const itemsPerPage = useAppSelector(selectItemsPerPage);
+	const activeSort = useAppSelector(getSort);
 	const productsFilter = useAppSelector(selectAllFilters);
 	const debouncedProductFilter = useDebounce(productsFilter, 500);
 
@@ -63,11 +68,20 @@ function ProductsPage() {
 		return toFilterProducts(productsData, debouncedProductFilter);
 	}, [productsData, debouncedProductFilter]);
 
+	const sortedProducts = useMemo(() => {
+		if (activeSort.type === SortTypeE.DEFAULT) return filteredProducts;
+		return sortObjectsByKey<ProductT>({
+			array: filteredProducts,
+			key: activeSort.type,
+			order: activeSort.order,
+		});
+	}, [filteredProducts, activeSort]);
+
 	const currentProducts = useMemo(() => {
 		const startIndex = (activePage - 1) * itemsPerPage;
 		const endIndex = startIndex + itemsPerPage;
-		return filteredProducts.slice(startIndex, endIndex);
-	}, [itemsPerPage, filteredProducts, activePage]);
+		return sortedProducts.slice(startIndex, endIndex);
+	}, [itemsPerPage, sortedProducts, activePage]);
 
 	useEffect(() => {
 		dispatch(setTotal(Math.ceil(filteredProducts.length / itemsPerPage)));
@@ -113,6 +127,10 @@ function ProductsPage() {
 		dispatch(setItemsPerPage(value));
 	};
 
+	const onChangeSort = (sort: SortT) => {
+		dispatch(setSort(sort));
+	};
+
 	const isError =
 		productsError ?? productsCategoriesError ?? productsColorsError;
 
@@ -130,12 +148,10 @@ function ProductsPage() {
 									itemsTotal={filteredProducts.length}
 									itemsPerPage={itemsPerPage}
 									currentPage={activePage}
-									currentOrder={"default"}
+									currentSort={activeSort}
 									onToggleFilter={toggleFilter}
 									onChangeElementsPerPage={changeItemsPerPage}
-									onChangeSort={() => {
-										console.log("onChangeSort");
-									}}
+									onChangeSort={onChangeSort}
 								/>
 							</div>
 
@@ -161,6 +177,7 @@ function ProductsPage() {
 				{currentProducts.length > 0 &&
 					currentProducts.map(product => (
 						<ProductCard
+							key={product.id}
 							product={product}
 							onAddToCart={(id: ProductT["id"]) => {
 								handleAction("Add to Cart", id);

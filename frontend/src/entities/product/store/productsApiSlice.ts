@@ -20,7 +20,18 @@ const productsApiSlice = createApi({
 		getProducts: build.query<ProductsApiResponseT, void>({
 			query: () => API_PRODUCTS_URL,
 			providesTags: ["products"],
-			transformResponse: (response: ProductsApiResponseT) => response,
+			transformResponse: (response: ProductsApiResponseT) => {
+				return response.map(product => {
+					const finalPrice =
+						product.status.discount && product.status.discount > 0
+							? product.price * (1 - product.status.discount / 100)
+							: product.price;
+					return {
+						finalPrice,
+						...product,
+					};
+				});
+			},
 		}),
 		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type -- Redux Toolkit wait for void arg
 		getCategories: build.query<string[], void>({

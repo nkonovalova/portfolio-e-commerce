@@ -67,6 +67,7 @@ export type ProductT = {
 	size: ProductSizeE[];
 	color: string[];
 	rating: number;
+	finalPrice?: number;
 };
 
 export type ProductsApiResponseT = ProductT[];

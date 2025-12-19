@@ -46,7 +46,7 @@ export function ProductCard({
 	const discountLabel = getStatusLabel(product.status);
 	let hasDiscount = false;
 	let discountedPrice = product.price;
-	if (product.status?.discount && product.status.discount > 0) {
+	if (product.status.discount && product.status.discount > 0) {
 		hasDiscount = true;
 		discountedPrice = discountedPrice * (1 - product.status.discount / 100);
 	}

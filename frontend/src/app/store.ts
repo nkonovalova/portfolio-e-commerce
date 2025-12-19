@@ -5,6 +5,7 @@ import productsApiSlice from "../entities/product/store/productsApiSlice.ts";
 import relevantProductsApiSlice from "../entities/product/store/relevantProductsApiSlice.ts";
 import { productsPaginationSlice } from "../pages/productsPage/store/productsPaginationSlice.ts";
 import { productsFilterSlice } from "../pages/productsPage/store/productsFilterSlice.ts";
+import { productsSortSlice } from "../pages/productsPage/store/productsSortSlice.ts";
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
@@ -13,6 +14,7 @@ const rootReducer = combineSlices(
 	relevantProductsApiSlice,
 	productsPaginationSlice,
 	productsFilterSlice,
+	productsSortSlice,
 );
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;

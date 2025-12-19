@@ -27,7 +27,7 @@ const getProduct = () => ({
     small: faker.commerce.productAdjective(),
     full: faker.commerce.productDescription(),
   },
-  price: faker.commerce.price({ min: 1000, max: 200000, dec: 2 }),
+  price: Number(faker.commerce.price({ min: 1000, max: 200000, dec: 2 })),
   currency: "USD",
   status: {
     new: faker.datatype.boolean(),

@@ -1,39 +1,84 @@
 import type { JSX } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ProductsFilterHeader.module.scss";
 import { Button } from "../../../../shared/ui/button/Button.tsx";
 import { IconFilter } from "../../../../shared/ui/icons/Icon.tsx";
 import Input from "../../../../shared/ui/input/Input.tsx";
 import { Dropdown } from "../../../../shared/ui/dropdown/Dropdown.tsx";
+import useDebounce from "../../../../shared/hooks/useDebounce.ts";
+import type { SortT } from "../../../../shared/model/sort.ts";
+import { SortOrderE, SortTypeE } from "../../../../shared/model/sort.ts";
 
 type ProductFilterHeaderProps = {
 	itemsTotal: number;
 	itemsPerPage: number;
 	currentPage: number;
-	currentOrder: string;
+	currentSort: SortT;
 	onToggleFilter: () => void;
 	onChangeElementsPerPage: (count: number) => void;
-	onChangeSort: (order: string) => void;
+	onChangeSort: (sort: SortT) => void;
 };
 
 const SORT_OPTIONS = [
-	{ value: "default", label: "Default" },
-	{ value: "price-asc", label: "Price ↑" },
-	{ value: "price-desc", label: "Price ↓" },
-	{ value: "name-asc", label: "A-Z" },
-	{ value: "name-desc", label: "Z-A" },
+	{ value: SortTypeE.DEFAULT, label: "Default" },
+	{ value: SortTypeE.FINAL_PRICE + SortOrderE.ASC, label: "Price ↑" },
+	{ value: SortTypeE.FINAL_PRICE + SortOrderE.DESC, label: "Price ↓" },
+	{ value: SortTypeE.NAME + SortOrderE.ASC, label: "A-Z" },
+	{ value: SortTypeE.NAME + SortOrderE.DESC, label: "Z-A" },
 ];
+
+const SORT_MAPPING = new Map<string, SortT>();
+SORT_MAPPING.set(SortTypeE.DEFAULT, {
+	type: SortTypeE.DEFAULT,
+	order: SortOrderE.ASC,
+});
+SORT_MAPPING.set(SortTypeE.FINAL_PRICE + SortOrderE.ASC, {
+	type: SortTypeE.FINAL_PRICE,
+	order: SortOrderE.ASC,
+});
+SORT_MAPPING.set(SortTypeE.FINAL_PRICE + SortOrderE.DESC, {
+	type: SortTypeE.FINAL_PRICE,
+	order: SortOrderE.DESC,
+});
+SORT_MAPPING.set(SortTypeE.NAME + SortOrderE.ASC, {
+	type: SortTypeE.NAME,
+	order: SortOrderE.ASC,
+});
+SORT_MAPPING.set(SortTypeE.NAME + SortOrderE.DESC, {
+	type: SortTypeE.NAME,
+	order: SortOrderE.DESC,
+});
 
 export function ProductsFilterHeader({
 	itemsTotal,
 	itemsPerPage,
 	currentPage,
-	currentOrder,
+	currentSort,
 	onToggleFilter,
 	onChangeElementsPerPage,
 	onChangeSort,
 }: ProductFilterHeaderProps): JSX.Element {
+	const [itemsPerPageLocal, setItemsPerPageLocal] = useState(
+		itemsPerPage.toString(),
+	);
+	const debouncedItemsPerPage = useDebounce(itemsPerPageLocal, 400);
 	const firstItem = (currentPage - 1) * itemsPerPage + 1;
 	const lastItem = Math.min(currentPage * itemsPerPage, itemsTotal);
+
+	useEffect(() => {
+		onChangeElementsPerPage(Number(debouncedItemsPerPage) || 16);
+	}, [debouncedItemsPerPage, onChangeElementsPerPage]);
+
+	const handleChangeSort = (value: string) => {
+		if (SORT_MAPPING.has(value)) {
+			onChangeSort(
+				SORT_MAPPING.get(value) ?? {
+					type: SortTypeE.DEFAULT,
+					order: SortOrderE.ASC,
+				},
+			);
+		}
+	};
 
 	return (
 		<header className={styles.header}>
@@ -57,19 +102,18 @@ export function ProductsFilterHeader({
 						type="number"
 						min={1}
 						className={styles.showInput}
-						value={itemsPerPage.toString()}
+						value={itemsPerPageLocal}
 						onChange={val => {
-							onChangeElementsPerPage(Number(val) || 16);
+							setItemsPerPageLocal(val);
 						}}
-						debounceDelay={500}
 					/>
 				</div>
 				<div className={styles.order}>
 					<Dropdown
 						label="Sort by"
 						options={SORT_OPTIONS}
-						value={currentOrder}
-						onChange={onChangeSort}
+						value={currentSort.type + currentSort.order}
+						onChange={handleChangeSort}
 					/>
 				</div>
 			</div>
