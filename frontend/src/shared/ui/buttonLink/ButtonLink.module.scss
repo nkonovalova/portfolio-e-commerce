@@ -1,0 +1,50 @@
+@use "../variables.module" as vars;
+
+.buttonLink {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px 24px;
+	font-size: 1rem;
+	cursor: pointer;
+	box-sizing: border-box;
+	text-decoration: none;
+	border: 1px solid vars.$color-golden;
+	transition:
+		background-color 0.2s ease-in-out,
+		opacity 0.2s ease-in-out;
+
+	&:hover {
+		opacity: 0.6;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px rgba(184, 142, 47, 0.4);
+	}
+
+	&.filled {
+		background-color: vars.$color-golden;
+		color: vars.$color-bg-white;
+		border-radius: 0;
+
+		&:hover {
+			border-radius: 0;
+			border-color: vars.$color-golden;
+			color: vars.$color-golden;
+			background: none;
+		}
+	}
+
+	&.unfilled {
+		border-radius: 0;
+		border-color: vars.$color-golden;
+		color: vars.$color-golden;
+
+		&:hover {
+			background-color: vars.$color-golden;
+			color: vars.$color-bg-white;
+			border-radius: 0;
+		}
+	}
+}

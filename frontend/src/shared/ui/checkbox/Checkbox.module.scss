@@ -1,0 +1,57 @@
+@use "../variables.module" as vars;
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 0.75rem;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.labelText {
+  font-size: 1rem;
+  color: vars.$color-text-secondary;
+}
+
+.customCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid vars.$color-text-primary;
+  border-radius: 4px;
+  background-color: transparent;
+  transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+
+  &.checked {
+    background-color: vars.$color-primary;
+    border-color: vars.$color-primary;
+
+    & .check-icon {
+      visibility: visible;
+    }
+  }
+}
+
+.check-icon {
+  width: 14px;
+  height: 14px;
+  color: white;
+  visibility: hidden;
+}
+
+.input:focus-visible + .customCheckbox {
+  outline: 2px solid vars.$color-primary;
+  outline-offset: 2px;
+}

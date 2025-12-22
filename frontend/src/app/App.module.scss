@@ -1,0 +1,22 @@
+@use "../shared/ui/variables.module" as vars;
+
+@import "normalize-scss";
+
+body {
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 12px;
+
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		font-size: 16px;
+	}
+}
+
+h1 {
+	font-size: 1.5rem;
+}

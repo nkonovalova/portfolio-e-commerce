@@ -1,0 +1,170 @@
+@use "../../shared/ui/variables.module" as vars;
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: vars.$color-bg-white;
+	overflow: hidden;
+	transition: box-shadow 0.3s ease;
+	height: 510px;
+
+	&:hover {
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+		& .overlay {
+			opacity: 1;
+		}
+	}
+}
+
+.imageWrapper {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1 / 1.1;
+	background-color: vars.$color-border;
+	height: 70%;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.badge {
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	font-size: 1rem;
+	font-weight: 500;
+	color: vars.$color-text-primary;
+
+	&.discount {
+		background-color: vars.$color-error;
+		color: vars.$color-bg-white;
+	}
+	&.new {
+		background-color: vars.$color-success;
+		color: vars.$color-bg-white;
+	}
+	&.hot {
+		background-color: vars.$color-golden;
+		color: vars.$color-bg-white;
+	}
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1rem;
+	flex-grow: 1;
+	background: vars.$color-bg-grey;
+	height: 30%;
+}
+
+.name {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: vars.$color-text-primary;
+	margin: 0;
+}
+
+.caption {
+	font-size: 1rem;
+	font-weight: 500;
+	color: vars.$color-text-secondary;
+	margin: 0;
+	flex-grow: 1;
+}
+
+.priceWrapper {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 0.5rem;
+}
+
+.price {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: vars.$color-text-primary;
+}
+
+.oldPrice {
+	font-size: 1rem;
+	color: vars.$color-text-secondary;
+	text-decoration: line-through;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(58, 58, 58, 0.72);
+	display: flex;
+	opacity: 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	transition: opacity 0.3s ease-out;
+}
+
+.actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	@media screen and (min-width: vars.$breakpoint-large-desktop) {
+		flex-wrap: initial;
+		justify-content: initial;
+	}
+}
+
+.actionButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	color: vars.$color-bg-white;
+	transition: opacity 0.2s ease;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	svg {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

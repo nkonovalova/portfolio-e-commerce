@@ -1,0 +1,51 @@
+@use "../variables.module" as vars;
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.labelText {
+  font-size: 1rem;
+  color: vars.$color-text-primary;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.selectContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.select {
+  appearance: none;
+  background-color: vars.$color-bg-white;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$ui-border-radius;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 1rem;
+  color: vars.$color-text-primary;
+  cursor: pointer;
+  //min-width: 150px;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$color-golden;
+    box-shadow: 0 0 0 3px vars.$color-golden-shadow;
+  }
+}
+
+.selectContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid vars.$color-text-primary;
+  border-right: 2px solid vars.$color-text-primary;
+  pointer-events: none;
+}

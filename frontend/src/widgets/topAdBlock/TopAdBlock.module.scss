@@ -1,0 +1,76 @@
+@use "../../shared/ui/variables.module" as vars;
+
+.topAdBlock {
+	position: relative;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+
+	@media screen and (min-width: vars.$breakpoint-desktop) {
+		height: 716px;
+		box-sizing: border-box;
+	}
+}
+
+.bg-img {
+	display: none;
+
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		object-fit: cover;
+		display: block;
+		position: absolute;
+		z-index: -1;
+		height: 100%;
+		width: 100%;
+		left: 0;
+	}
+}
+
+.content-wrapper {
+	width: 100%;
+	max-width: vars.$max-content-width;
+
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		overflow: hidden;
+		display: flex;
+		justify-content: right;
+		height: 100%;
+	}
+
+	@media screen and (min-width: vars.$breakpoint-desktop) {
+		padding-bottom: 10rem;
+	}
+}
+
+.content {
+	background: vars.$color-golden-light;
+	padding: vars.$gap-mobile vars.$vertical-gap-mobile vars.$gap-mobile
+		vars.$vertical-gap-mobile;
+
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		width: 50%;
+	}
+
+	@media screen and (min-width: vars.$breakpoint-desktop) {
+		width: 643px;
+		align-self: self-end;
+		padding: 3rem 2.5rem;
+	}
+}
+
+.section-title {
+	font-weight: normal;
+	text-transform: capitalize;
+	letter-spacing: 0.2rem;
+}
+
+.title {
+	text-transform: capitalize;
+	color: vars.$color-golden;
+	font-size: 2rem;
+}
+
+.text {
+	font-size: 1rem;
+	margin-bottom: 2rem;
+}

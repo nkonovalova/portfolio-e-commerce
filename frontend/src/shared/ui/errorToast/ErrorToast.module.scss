@@ -1,0 +1,63 @@
+@use "../variables.module" as vars;
+
+.errorToast {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	z-index: 9999; // Ensure it's on top of everything
+
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	min-width: 280px;
+	max-width: 400px;
+	padding: 1rem 1.5rem;
+
+	background-color: vars.$color-error-light;
+	color: vars.$color-error;
+	border: 1px solid vars.$color-error;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+	// Animation for appearing
+	animation: slide-in 0.3s ease-out;
+}
+
+.message {
+	margin: 0;
+	font-size: 0.95rem;
+	font-weight: 500;
+	flex-grow: 1;
+}
+
+.closeButton {
+	display: inline-flex;
+	padding: 0.25rem;
+	background: transparent;
+	border: none;
+	color: vars.$color-error;
+	cursor: pointer;
+	border-radius: 50%;
+	transition: background-color 0.2s ease-in-out;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	svg {
+		width: 18px;
+		height: 18px;
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}

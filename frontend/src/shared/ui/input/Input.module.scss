@@ -1,0 +1,59 @@
+@use "../variables.module" as vars;
+
+.wrapper {
+	display: inline-flex;
+	gap: 1rem;
+	width: 100%;
+	align-items: center;
+}
+
+.labelText {
+	font-size: 1rem;
+	color: vars.$color-text-primary;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.input {
+	width: 100%;
+	padding: 12px 16px;
+	box-sizing: border-box;
+	font-size: 1rem;
+	border: 1px solid vars.$color-border;
+	border-radius: vars.$ui-border-radius;
+	background-color: vars.$color-bg-white;
+	color: vars.$color-text-primary;
+	transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out;
+
+	&::placeholder {
+		color: vars.$color-text-secondary;
+	}
+
+	&:focus {
+		outline: none;
+		border-color: vars.$color-golden;
+		box-shadow: 0 0 0 3px vars.$color-golden-shadow;
+	}
+
+	&:disabled {
+		background-color: vars.$color-bg-white;
+		cursor: not-allowed;
+	}
+}
+
+.inputError {
+	border-color: vars.$color-error;
+
+	&:focus {
+		border-color: vars.$color-error;
+		box-shadow: 0 0 0 3px vars.$color-error-shadow;
+	}
+}
+
+.errorMessage {
+	font-size: 14px;
+	color: vars.$color-error;
+	margin: 0;
+}

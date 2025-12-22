@@ -1,0 +1,98 @@
+@use "../../../../shared/ui/variables.module" as vars;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background-color: vars.$color-golden-light;
+  box-sizing: border-box;
+
+}
+
+.left-controls,
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: vars.$color-text-primary;
+  padding: 0;
+
+  svg {
+    width: 21px;
+    height: 18px;
+  }
+}
+
+.results-info {
+  display: none;
+
+  @media screen and (min-width: vars.$breakpoint-desktop) {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: vars.$color-border;
+}
+
+.show-input {
+  // Custom styling for the "Show" input wrapper
+  :global(.Input_wrapper__*) {
+    gap: 1rem;
+  }
+  // Target the input element itself
+  input {
+    width: 60px;
+    padding: 0.5rem;
+    text-align: center;
+  }
+}
+
+.order {
+  & label {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    @media screen and (min-width: vars.$breakpoint-tablet) {
+      display: inline-flex;
+      flex-flow: row;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+
+.pages {
+  & label {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    @media screen and (min-width: vars.$breakpoint-tablet) {
+      display: inline-flex;
+      flex-flow: row;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
