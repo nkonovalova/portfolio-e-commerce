@@ -20,9 +20,9 @@ type ProductCardProps = {
 };
 
 const getStatusLabel = (status: ProductT["status"]) => {
-	if (status?.new) return "New";
-	if (status?.hot) return "Hot";
-	if (status?.discount && status.discount > 0)
+	if (status.new) return "New";
+	if (status.hot) return "Hot";
+	if (status.discount && status.discount > 0)
 		return `-${status.discount.toString()}%`;
 	return null;
 };
@@ -61,8 +61,8 @@ export function ProductCard({
 				{discountLabel && (
 					<span
 						className={clsx(styles.badge, {
-							[styles.new]: product.status?.new,
-							[styles.hot]: product.status?.hot,
+							[styles.new]: product.status.new,
+							[styles.hot]: product.status.hot,
 							[styles.discount]: hasDiscount,
 						})}
 					>

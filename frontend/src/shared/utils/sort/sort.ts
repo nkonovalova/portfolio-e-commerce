@@ -1,4 +1,4 @@
-import { SortOrderE } from "../../model/sort.ts";
+import { SortOrderE } from "./model/sort.ts";
 
 /**
  * Sorts an array of objects by a specified key in a specified order.

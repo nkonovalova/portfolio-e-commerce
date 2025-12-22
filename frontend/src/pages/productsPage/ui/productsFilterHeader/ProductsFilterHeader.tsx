@@ -6,8 +6,11 @@ import { IconFilter } from "../../../../shared/ui/icons/Icon.tsx";
 import Input from "../../../../shared/ui/input/Input.tsx";
 import { Dropdown } from "../../../../shared/ui/dropdown/Dropdown.tsx";
 import useDebounce from "../../../../shared/hooks/useDebounce.ts";
-import type { SortT } from "../../../../shared/model/sort.ts";
-import { SortOrderE, SortTypeE } from "../../../../shared/model/sort.ts";
+import type { SortT } from "../../../../shared/utils/sort/model/sort.ts";
+import {
+	SortOrderE,
+	SortTypeE,
+} from "../../../../shared/utils/sort/model/sort.ts";
 
 type ProductFilterHeaderProps = {
 	itemsTotal: number;

@@ -1,6 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { vi } from "vitest";
 import { ProductsFilterHeader } from "./ProductsFilterHeader.tsx";
+import {
+	SortOrderE,
+	SortTypeE,
+} from "../../../../shared/utils/sort/model/sort.ts";
 
 describe("ProductFilterHeader Component", () => {
 	const onToggleFilter = vi.fn();
@@ -8,10 +12,10 @@ describe("ProductFilterHeader Component", () => {
 	const onChangeSort = vi.fn();
 
 	const defaultProps = {
-		elementsTotalCount: 32,
-		elementsPerPage: 16,
+		itemsTotal: 32,
+		itemsPerPage: 16,
 		currentPage: 1,
-		currentOrder: "default",
+		currentSort: { type: SortTypeE.DEFAULT, order: SortOrderE.ASC },
 		onToggleFilter,
 		onChangeElementsPerPage,
 		onChangeSort,

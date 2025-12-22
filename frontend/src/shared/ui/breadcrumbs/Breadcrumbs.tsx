@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { NavLink, useMatches } from "react-router";
 import styles from "./Breadcrumbs.module.scss";
 import { IconChevronRight } from "../icons/Icon.tsx";
@@ -9,7 +8,7 @@ type RouteHandleT = {
 	) => string | undefined;
 };
 
-export function Breadcrumbs(): JSX.Element | null {
+export function Breadcrumbs() {
 	const matches = useMatches() as {
 		handle?: RouteHandleT;
 		pathname: string;
@@ -19,7 +18,7 @@ export function Breadcrumbs(): JSX.Element | null {
 	let crumbs = matches
 		.filter(match => match.handle?.breadcrumb)
 		.map(match => {
-			const label = match.handle?.breadcrumb?.(match.params);
+			const label = match.handle?.breadcrumb?.(match.params) ?? "";
 			return {
 				label,
 				pathname: match.pathname,

@@ -46,10 +46,10 @@ export const PRODUCT_STATUSES = [
 ];
 
 export type ProductStatusT = {
-	new?: boolean;
-	discount?: number;
-	last?: boolean;
-	hot?: boolean;
+	new: boolean;
+	discount: number;
+	last: boolean;
+	hot: boolean;
 };
 
 /**

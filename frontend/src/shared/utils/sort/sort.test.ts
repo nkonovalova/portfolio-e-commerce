@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { sortObjectsByKey } from "./sort.ts";
-import { SortOrderE } from "../../model/sort.ts";
+import { SortOrderE } from "./model/sort.ts";
 import type { ProductT } from "../../../entities/product/model/model.ts";
 
 const testProducts: ProductT[] = [

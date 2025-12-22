@@ -1,9 +1,9 @@
 import type { JSX } from "react";
+import { useId } from "react";
 import clsx from "clsx";
 import styles from "./Pagination.module.scss";
 import { Button, ButtonStyle } from "../../shared/ui/button/Button.tsx";
 import { IconChevronRight } from "../../shared/ui/icons/Icon.tsx";
-import { uniqueId } from "../../shared/utils/uniqId.ts";
 
 type PaginationProps = {
 	total: number;
@@ -61,6 +61,8 @@ export function Pagination({
 	onClickPrev,
 	className,
 }: PaginationProps): JSX.Element | null {
+	const dotsId = useId();
+
 	if (total <= 1) {
 		return null;
 	}
@@ -81,7 +83,7 @@ export function Pagination({
 			</Button>
 			<div className={styles.pageNumbers}>
 				{pageNumbers.map(page => {
-					if (page === DOTS_NUMBER) return <span key={uniqueId()}>{DOTS}</span>;
+					if (page === DOTS_NUMBER) return <span key={dotsId}>{DOTS}</span>;
 					return (
 						<Button
 							name={page.toString()}

@@ -1,5 +1,8 @@
 import { createAppSlice } from "../../../app/createAppSlice.ts";
-import { SortOrderE, SortTypeE } from "../../../shared/model/sort.ts";
+import {
+	SortOrderE,
+	SortTypeE,
+} from "../../../shared/utils/sort/model/sort.ts";
 
 const initialState = {
 	type: SortTypeE.DEFAULT,

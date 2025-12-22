@@ -29,8 +29,8 @@ import { selectAllFilters } from "./store/productsFilterSlice.ts";
 import { toFilterProducts } from "./lib/filter.ts";
 import useDebounce from "../../shared/hooks/useDebounce.ts";
 import { getSort, setSort } from "./store/productsSortSlice.ts";
-import type { SortT } from "../../shared/model/sort.ts";
-import { SortTypeE } from "../../shared/model/sort.ts";
+import type { SortT } from "../../shared/utils/sort/model/sort.ts";
+import { SortTypeE } from "../../shared/utils/sort/model/sort.ts";
 import { sortObjectsByKey } from "../../shared/utils/sort/sort.ts";
 
 function ProductsPage() {

@@ -46,15 +46,17 @@ export const toFilterProducts = (
 			return false;
 		}
 
-		const productPrice =
-			product.status.discount && product.status.discount > 0
-				? product.price * (1 - product.status.discount / 100)
-				: product.price;
-		if (!isNaN(priceFrom) && productPrice < priceFrom) {
+		if (
+			!isNaN(priceFrom) &&
+			(product.finalPrice ?? product.price) < (priceFrom satisfies number)
+		) {
 			return false;
 		}
 
-		if (!isNaN(priceTo) && productPrice > priceTo) {
+		if (
+			!isNaN(priceTo) &&
+			(product.finalPrice ?? product.price) > (priceTo satisfies number)
+		) {
 			return false;
 		}
 
