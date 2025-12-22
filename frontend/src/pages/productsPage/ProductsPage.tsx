@@ -18,7 +18,6 @@ import {
 } from "./store/productsPaginationSlice.ts";
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ProductCard } from "../../widgets/productCard/ProductCard.tsx";
 import type { ProductT } from "../../entities/product/model/model.ts";
 import styles from "./ProductsPage.module.scss";
 import { Pagination } from "../../widgets/pagination/Pagination.tsx";
@@ -32,6 +31,7 @@ import { getSort, setSort } from "./store/productsSortSlice.ts";
 import type { SortT } from "../../shared/utils/sort/model/sort.ts";
 import { SortTypeE } from "../../shared/utils/sort/model/sort.ts";
 import { sortObjectsByKey } from "../../shared/utils/sort/sort.ts";
+import ProductList from "../../widgets/productList/ProductList.tsx";
 
 function ProductsPage() {
 	const productContainerRef = useRef<HTMLDivElement>(null);
@@ -173,26 +173,22 @@ function ProductsPage() {
 			isLoading={productsIsLoading}
 			errorMessage={isError ? "Loading data error" : ""}
 		>
-			<div className={styles.products} ref={productContainerRef}>
-				{currentProducts.length > 0 &&
-					currentProducts.map(product => (
-						<ProductCard
-							key={product.id}
-							product={product}
-							onAddToCart={(id: ProductT["id"]) => {
-								handleAction("Add to Cart", id);
-							}}
-							onShare={(id: ProductT["id"]) => {
-								handleAction("Share", id);
-							}}
-							onCompare={(id: ProductT["id"]) => {
-								handleAction("Compare", id);
-							}}
-							onLike={(id: ProductT["id"]) => {
-								handleAction("Like", id);
-							}}
-						/>
-					))}
+			<div ref={productContainerRef}>
+				<ProductList
+					products={currentProducts}
+					onLike={(id: ProductT["id"]) => {
+						handleAction("onLike", id);
+					}}
+					onShare={(id: ProductT["id"]) => {
+						handleAction("onShare", id);
+					}}
+					onAddToCart={(id: ProductT["id"]) => {
+						handleAction("onAddToCart", id);
+					}}
+					onCompare={(id: ProductT["id"]) => {
+						handleAction("onCompare", id);
+					}}
+				/>
 			</div>
 			<Pagination
 				total={totalPages}

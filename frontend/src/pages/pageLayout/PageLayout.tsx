@@ -10,6 +10,7 @@ type PageLayoutPropsT = {
 	isLoading?: boolean;
 	errorMessage?: string;
 	topInfoBlock?: React.ReactNode;
+	bottomInfoBlock?: React.ReactNode;
 	children: React.ReactNode;
 };
 
@@ -17,6 +18,7 @@ function PageLayout({
 	errorMessage = "",
 	isLoading = false,
 	topInfoBlock,
+	bottomInfoBlock,
 	children,
 }: PageLayoutPropsT) {
 	const [activeError, setActiveError] = useState<string | undefined>(
@@ -41,9 +43,9 @@ function PageLayout({
 					<section className={styles.information}>{topInfoBlock}</section>
 				)}
 				<section className={styles.content}>{children}</section>
-				<section className={styles.information}>
-					Bottom information block
-				</section>
+				{bottomInfoBlock && (
+					<section className={styles.information}>{bottomInfoBlock}</section>
+				)}
 				{isLoading && (
 					<div
 						className={styles.loaderWrapper}
