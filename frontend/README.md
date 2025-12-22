@@ -60,11 +60,15 @@ App will start at:
 
 ## 🧾 API
 
-API documentation is described in [`API.yaml`](./API.yaml).  
-Example endpoints:
+The backend is a `json-server` instance with custom routes. All endpoints are prefixed with `/api`.
 
-- `GET /products` — returns full product list
-- `GET /relatedProducts` — returns related products for the main page
+### Available Endpoints
+
+-   `GET /api/products` — Returns a full list of all products.
+-   `GET /api/products/:id` — Returns a single product by its ID.
+-   `GET /api/products/categories` — Returns an array of available product category strings.
+-   `GET /api/products/colors` — Returns an array of available color hex strings.
+-   `GET /api/products/relevant` — Returns a list of products marked as "relevant" for the main page.
 
 ---
 
@@ -81,17 +85,14 @@ Example endpoints:
 
 ## 🧭 Routing
 
-Routing is handled via **React Router v6**.  
-All routes are defined in `/src/app/router.tsx` (or `/routes/` folder).
 
-Example:
+Routing is handled via **React Router v6**, utilizing the modern data router features (e.g., `createBrowserRouter`). 
+All routes are defined centrally in `/src/app/app.tsx`.
 
-```tsx
-<Routes>
-	<Route path="/" element={<HomePage />} />
-	<Route path="/product/:id" element={<ProductPage />} />
-</Routes>
-```
+A key feature of the routing setup is the dynamic generation of breadcrumbs. 
+This is achieved by adding a `handle` object to each route definition. The `Breadcrumbs` component then uses the 
+`useMatches()` hook to read these handles and render the navigation path.
+
 
 ---
 
@@ -108,11 +109,11 @@ Example:
   - [ ] Inspiration block with slider
   - [ ] Gallery block
 - [ ] Shop page
-  - [ ] Page header
-  - [ ] Product list
-  - [ ] Frontend pagination
-  - [ ] Filter and filtration
-  - [ ] Sorting
+  - [x] Page header
+  - [x] Product list
+  - [x] Frontend pagination
+  - [x] Filter and filtration
+  - [x] Sorting
   - [ ] Bottom Ad block
 - [ ] Product detail page
 - [ ] Cart and Cart total page
@@ -125,7 +126,7 @@ Example:
 
 Developed by Natalia Konovalova  
 📫 Telegram: [@p0kute](https://t.me/p0kute)  
-💼 LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+💼 LinkedIn: [Natalia Konovalova](https://linkedin.com/in/yourprofile)
 
 ---
 

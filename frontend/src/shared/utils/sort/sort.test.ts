@@ -77,8 +77,6 @@ describe("sortObjectsByKey", () => {
 			order: SortOrderE.DESC,
 		});
 
-		console.log(sorted);
-
 		expect(sorted[0].price).toBe(190124.99);
 		expect(sorted[sorted.length - 1].price).toBe(6425.2);
 		expect(sorted[1].price).toBeLessThanOrEqual(sorted[0].price);
