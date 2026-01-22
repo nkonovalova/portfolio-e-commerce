@@ -7,8 +7,6 @@ import { fileURLToPath } from "url";
 const app = express();
 app.use(cors());
 
-// const __dirname = new URL(".", import.meta.url).pathname;
-// const dataPath = path.join(__dirname, "data");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dataPath = path.join(__dirname, "data");
