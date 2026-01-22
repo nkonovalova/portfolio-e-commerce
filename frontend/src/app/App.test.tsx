@@ -2,7 +2,7 @@ import { act, screen } from "@testing-library/react";
 import { App } from "./App.tsx";
 import { renderWithProviders } from "../shared/utils/test-utils.tsx";
 
-test.skip("App should have correct initial render", () => {
+test.todo("App should have correct initial render", () => {
 	renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
@@ -19,27 +19,30 @@ test.skip("App should have correct initial render", () => {
 	expect(incrementValueInput).toHaveValue(2);
 });
 
-test.skip("Increment value and Decrement value should work as expected", async () => {
-	const { user } = renderWithProviders(<App />);
+test.todo(
+	"Increment value and Decrement value should work as expected",
+	async () => {
+		const { user } = renderWithProviders(<App />);
 
-	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
+		const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
 
-	const incrementValueButton =
-		screen.getByLabelText<HTMLButtonElement>("Increment value");
+		const incrementValueButton =
+			screen.getByLabelText<HTMLButtonElement>("Increment value");
 
-	const decrementValueButton =
-		screen.getByLabelText<HTMLButtonElement>("Decrement value");
+		const decrementValueButton =
+			screen.getByLabelText<HTMLButtonElement>("Decrement value");
 
-	// Click on "+" => Count should be 1
-	await user.click(incrementValueButton);
-	expect(countLabel).toHaveTextContent("1");
+		// Click on "+" => Count should be 1
+		await user.click(incrementValueButton);
+		expect(countLabel).toHaveTextContent("1");
 
-	// Click on "-" => Count should be 0
-	await user.click(decrementValueButton);
-	expect(countLabel).toHaveTextContent("0");
-});
+		// Click on "-" => Count should be 0
+		await user.click(decrementValueButton);
+		expect(countLabel).toHaveTextContent("0");
+	},
+);
 
-test.skip("Add Amount should work as expected", async () => {
+test.todo("Add Amount should work as expected", async () => {
 	const { user } = renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
@@ -67,7 +70,7 @@ test.skip("Add Amount should work as expected", async () => {
 	expect(countLabel).toHaveTextContent("3");
 });
 
-it.skip("Add Async should work as expected", async () => {
+it.todo("Add Async should work as expected", async () => {
 	vi.useFakeTimers({ shouldAdvanceTime: true });
 
 	const { user } = renderWithProviders(<App />);
@@ -114,7 +117,7 @@ it.skip("Add Async should work as expected", async () => {
 	vi.useRealTimers();
 });
 
-test.skip("Add If Odd should work as expected", async () => {
+test.todo("Add If Odd should work as expected", async () => {
 	const { user } = renderWithProviders(<App />);
 
 	const countLabel = screen.getByLabelText<HTMLLabelElement>("Count");
