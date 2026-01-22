@@ -10,33 +10,43 @@ jobs:
   frontend:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+    strategy:
+      matrix:
+        node-version: [ 20 ]
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      steps:
+        - uses: actions/checkout@v4
 
-      - name: Install frontend dependencies
-        working-directory: frontend
-        run: |
-          pnpm ci
+        - name: Install pnpm
+          uses: pnpm/action-setup@v4
+          with:
+            version: 10
 
-      - name: Lint frontend
-        working-directory: frontend
-        run: |
-          pnpm run lint
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{ matrix.node-version }}
+            cache: "pnpm"
 
-      - name: Type Check frontend
-        working-directory: frontend
-        run: |
-          pnpm run type-check
+        - name: Install frontend dependencies
+          working-directory: frontend
+          run: |
+            pnpm ci
 
-      - name: Tests frontend
-        working-directory: frontend
-        run: |
-          pnpm run test
+        - name: Lint frontend
+          working-directory: frontend
+          run: |
+            pnpm run lint
+
+        - name: Type Check frontend
+          working-directory: frontend
+          run: |
+            pnpm run type-check
+
+        - name: Tests frontend
+          working-directory: frontend
+          run: |
+            pnpm run test
 
   deploy:
     runs-on: ubuntu-latest
