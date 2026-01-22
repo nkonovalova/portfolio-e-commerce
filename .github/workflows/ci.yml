@@ -8,7 +8,7 @@ on:
 
 jobs:
   frontend:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
           npm run test
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: [frontend]
     if: github.ref == 'refs/heads/main'
     steps:
