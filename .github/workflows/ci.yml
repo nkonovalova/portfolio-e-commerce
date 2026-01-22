@@ -18,23 +18,23 @@ jobs:
         with:
           node-version: 20
 
-      - name: Go to frontend src
-        run: |
-          cd frontend
-
-      - name: Install dependencies
+      - name: Install frontend dependencies
+        working-directory: frontend
         run: |
           npm ci
 
-      - name: Lint
+      - name: Lint frontend
+        working-directory: frontend
         run: |
           npm run lint
 
-      - name: Type Check
+      - name: Type Check frontend
+        working-directory: frontend
         run: |
           npm run type-check
 
-      - name: Tests
+      - name: Tests frontend
+        working-directory: frontend
         run: |
           npm run test
 
