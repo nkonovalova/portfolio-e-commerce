@@ -83,7 +83,7 @@ describe("Header Component", () => {
 	});
 
 	// TODO: fix test for desktop
-	describe.skip("on desktop screens (>= 1024px)", () => {
+	describe.todo("on desktop screens (>= 1024px)", () => {
 		beforeEach(() => {
 			setScreenWidth(1280); // Set a desktop screen width
 			window.matchMedia = vi.fn().mockImplementation(query => ({
@@ -98,21 +98,24 @@ describe("Header Component", () => {
 			}));
 		});
 
-		test.skip("Menu is always visible and the menu button is not visible", () => {
-			renderHeader();
+		test.todo(
+			"Menu is always visible and the menu button is not visible",
+			() => {
+				renderHeader();
 
-			// The menu button for mobile should not be in the document
-			const menuButton = screen.queryByRole("button", { name: /open menu/i });
-			expect(menuButton).not.toBeVisible();
+				// The menu button for mobile should not be in the document
+				const menuButton = screen.queryByRole("button", { name: /open menu/i });
+				expect(menuButton).not.toBeVisible();
 
-			// The navigation container should be present and visible
-			const navContainer = screen.getByRole("navigation");
-			expect(navContainer).toBeVisible();
+				// The navigation container should be present and visible
+				const navContainer = screen.getByRole("navigation");
+				expect(navContainer).toBeVisible();
 
-			// On desktop, the 'hidden' class has no effect due to CSS media queries,
-			// so the menu is effectively always visible regardless of state.
-			// We can verify it doesn't have the transform style.
-			expect(navContainer).not.toHaveStyle("transform: translateY(-150%)");
-		});
+				// On desktop, the 'hidden' class has no effect due to CSS media queries,
+				// so the menu is effectively always visible regardless of state.
+				// We can verify it doesn't have the transform style.
+				expect(navContainer).not.toHaveStyle("transform: translateY(-150%)");
+			},
+		);
 	});
 });

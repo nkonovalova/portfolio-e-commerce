@@ -1,53 +1,76 @@
-import jsonServer from "json-server";
-import fs from "fs";
+import express from "express";
 import path from "path";
-import { createDb } from "./db.mjs";
+import cors from "cors";
+import { readFile } from "fs/promises";
+import { fileURLToPath } from "url";
 
-const server = jsonServer.create();
-const middlewares = jsonServer.defaults();
+const app = express();
+app.use(cors());
 
-const routes = JSON.parse(fs.readFileSync(path.resolve("routes.json")));
-server.use(jsonServer.rewriter(routes));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const dataPath = path.join(__dirname, "data");
 
-server.use(middlewares);
-server.use(jsonServer.bodyParser);
+const readJsonFile = async (filename) => {
+  const file = await readFile(path.join(dataPath, filename), "utf-8");
+  return JSON.parse(file);
+};
 
-async function start() {
-  const db = await createDb();
-  const router = jsonServer.router(db);
+app.get("/api/products", async (req, res) => {
+  try {
+    const products = await readJsonFile("products.json");
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Error reading products data" });
+  }
+});
 
-  server.get("/products/colors", (req, res) => {
-    res.jsonp(router.db.get("colors").value());
-  });
+app.get("/api/products/categories", async (req, res) => {
+  try {
+    const categories = await readJsonFile("productCategories.json");
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ message: "Error reading categories data" });
+  }
+});
 
-  server.get("/products/categories", (req, res) => {
-    res.jsonp(router.db.get("productCategories").value());
-  });
+// Endpoint for colors
+app.get("/api/products/colors", async (req, res) => {
+  try {
+    const colors = await readJsonFile("colors.json");
+    res.json(colors);
+  } catch (error) {
+    res.status(500).json({ message: "Error reading colors data" });
+  }
+});
 
-  server.get("/products/relevant", (req, res) => {
-    res.jsonp(router.db.get("relevantProducts").value());
-  });
+// Endpoint for relevant products
+app.get("/api/products/relevant", async (req, res) => {
+  try {
+    const relevantProducts = await readJsonFile("relevantProducts.json");
+    res.json(relevantProducts);
+  } catch (error) {
+    res.status(500).json({ message: "Error reading relevant products data" });
+  }
+});
 
-  server.use(router);
+app.get("/api/products/:id", async (req, res) => {
+  try {
+    const products = await readJsonFile("products.json");
+    const product = products.find((p) => p.id === req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error reading products data" });
+  }
+});
 
-  const port = process.env.PORT || 3001;
-  server.listen(port, () => {
-    console.log(`🚀 JSON Server is running at http://localhost:${port}\n`);
-    console.log("----------------------------------------------------");
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    console.log("✨ Standard Endpoints (available via /api/ prefix):");
-    Object.keys(db).forEach((key) => {
-      if (key === "colors" || key === "productCategories") return;
-      console.log(`   /api/${key}`);
-    });
-
-    console.log("\n✨ Custom Mapped Endpoints:");
-    console.log("   /api/products/colors -> /colors");
-    console.log("   /api/products/categories -> /productCategories");
-    console.log("   /api/products/relevant -> /relevantProducts");
-
-    console.log("----------------------------------------------------");
-  });
-}
-
-start();
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});

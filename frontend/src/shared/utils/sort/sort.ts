@@ -18,7 +18,7 @@ export function sortObjectsByKey<T>({
 }: {
 	array: T[];
 	key: keyof T;
-	order: SortOrderE;
+	order?: SortOrderE;
 }): T[] {
 	return [...array].sort((a, b) => {
 		const valA = a[key];

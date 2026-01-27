@@ -99,7 +99,7 @@ describe("Pagination Component", () => {
 		expect(screen.queryAllByText(DOTS)).toHaveLength(1);
 	});
 
-	it.skip("disables the active page button and sets aria-current", () => {
+	it.todo("disables the active page button and sets aria-current", () => {
 		render(
 			<Pagination
 				total={5}

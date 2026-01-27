@@ -1,12 +1,11 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-import "./App.module.scss";
-import "../shared/ui/common.module.scss";
 
 import { HOME_ROUTE, PRODUCTS_ROUTE } from "../shared/routes.ts";
 import Main from "../pages/main/Main.tsx";
 import ProductsPage from "../pages/productsPage/ProductsPage.tsx";
 import ProductPage from "../pages/productPage/ProductPage.tsx";
 import UIPage from "../pages/uiPage/UIPage.tsx";
+import Page404 from "../pages/404/404.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -43,6 +42,10 @@ const router = createBrowserRouter([
 			{
 				path: "/ui",
 				element: <UIPage />,
+			},
+			{
+				path: "*",
+				element: <Page404 />,
 			},
 		],
 	},

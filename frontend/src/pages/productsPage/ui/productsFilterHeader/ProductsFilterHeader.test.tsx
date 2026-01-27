@@ -55,7 +55,7 @@ describe("ProductFilterHeader Component", () => {
 		expect(onChangeElementsPerPage).toHaveBeenCalled();
 	});
 
-	it.skip("calls onChangeSort when the sort dropdown value changes", () => {
+	it.todo("calls onChangeSort when the sort dropdown value changes", () => {
 		render(<ProductsFilterHeader {...defaultProps} />);
 		const sortDropdown = screen.getByLabelText("Sort by");
 		fireEvent.change(sortDropdown, {
