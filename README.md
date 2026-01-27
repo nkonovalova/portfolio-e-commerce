@@ -3,6 +3,10 @@
 A modern web application for displaying and managing a product catalog.  
 Built with **React**, **Redux Toolkit**, and **Vite**, it provides a fast and scalable architecture for e-commerce or showcase projects.
 
+Production server: https://portfolio-e-commerce-zlny.onrender.com/
+
+Test server: https://portfolio-e-commerce-1-na8n.onrender.com
+
 ---
 
 ## 🚀 Tech Stack
