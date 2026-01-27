@@ -1,27 +1,27 @@
 @use "../../shared/ui/variables.module" as vars;
 
 .page-header {
-  position: relative;
-  z-index: 4;
+	position: relative;
+	z-index: 4;
 }
 
 .filter {
-  position: relative;
+	position: relative;
 }
 
 .filter-header {
-  position: relative;
-  z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 .filter-wrapper {
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-  transition: transform 0.5s ease-in-out;
-  transform: translateY(0);
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	transition: transform 0.5s ease-in-out;
+	transform: translateY(0);
 
-  &.hidden {
-    transform: translateY(-150%);
-  }
+	&.hidden {
+		transform: translateY(-150%);
+	}
 }

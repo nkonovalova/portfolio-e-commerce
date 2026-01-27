@@ -2,22 +2,22 @@
 
 @import "normalize-scss";
 :root {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 12px;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 12px;
 
-  @media screen and (min-width: vars.$breakpoint-tablet) {
-    font-size: 16px;
-  }
+	@media screen and (min-width: vars.$breakpoint-tablet) {
+		font-size: 16px;
+	}
 }
 body {
-  margin: 0;
+	margin: 0;
 }
 
 h1 {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
